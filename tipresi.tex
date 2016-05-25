@@ -1,0 +1,47 @@
+\documentclass{beamer}
+
+\usetheme{boxes}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{bm}        % standard math notation (fonts)
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}  % standard math notation (vectors/sets/...)
+\usepackage[ngerman]{babel}
+\usepackage[babel,german=quotes]{csquotes}
+%\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{ulem}
+\usepackage{hyperref}
+\usepackage{graphicx} % eps graphics support
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{times}           % scalable fonts
+
+
+\title{Präsentations-Titel}
+\author{Markus Bullmann, Thimo Eder, \\ Stefan Gerasch, Julius Hackel, Re Jis}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \frame{\tableofcontents[currentsection]}
+    
+    \section{Abschnitt 1}
+    \begin{frame} %% Eine Folie
+        \frametitle{Ein Demotitel} %% Folientitel
+        $X_a^2$
+        \begin{Definition} %% Definition
+            Eine Definition $X_a^2$
+        \end{Definition}
+    \end{frame}
+    \begin{frame}
+        \frametitle{Test}
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
+        Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
+        Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
+        Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.
+        Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.      
+    \end{frame}
+\end{document}
