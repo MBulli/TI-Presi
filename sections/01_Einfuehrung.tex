@@ -8,3 +8,97 @@
     Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.
     Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.      
 \end{frame}
+\begin{frame}{\textsc{Rucksack}-Problem}
+    Grundidee: \qq{Qual der Wahl}
+    
+    \begin{itemize}
+        \item Ein Dieb raubt einen Laden aus, jedoch hat er für die Beute nur einen Rucksack dabei
+        \item Im Laden findet er $n$ Gegenstände
+        \item Der $i$-te Gegenstand hat den Wert $p_i$ und das Gewicht $w$
+        \item Sein Rucksack kann höchstens das Gewicht $B$ tragen
+        \item $w_i$ und $B$ sind ganze Zahlen ($p_i$ können aus $\mathbb{R}^+$ sein)
+    \end{itemize}
+    \alert{Welche Gegenstände sollten für den maximalen Profit gewählt werden?} 
+\end{frame}
+\begin{frame}
+    TODO Viz
+\end{frame}
+\begin{frame}{\textsc{Rucksack}-Problem formel}
+    \begin{itemize}
+        \item $\begin{aligned}[t] 
+            \mathcal{D}=\{\langle W,\vol,p,B \rangle \mid & W=\{1,...,n\}, & \\
+                                                                & \text{vol} \colon W \to \mathbb{N}, & \\
+                                                                & p \colon W \to \mathbb{N}, & \\
+                                                                & B \in \mathbb{N}, & \\
+                                                                & \forall w \in W \colon \vol(w) \leq B \}
+         \end{aligned}$
+        
+        \item $S( \langle W, \text{vol}, p, B \rangle )=\{ A \subseteq W \mid \sum_{w\in A}{ \vol(w)} \leq B \}$
+        \item $f(A)=\sum_{w\in A}{p_w}$
+        \item $\max$
+    \end{itemize}
+\end{frame}
+\begin{frame}{0-1 \textsc{Rucksack}-Problem}
+    maximiere $\displaystyle \sum_{i=1}^{n}{x_i p_i}$
+       
+    unter der Bedingung $\displaystyle \sum_{i=1}^{n}{x_i \vol(w_i) \leq B}$
+       
+    mit $x_i=1$ wenn Gegenstand $i$ im Rucksack enthalten ist, sonst $x_i=0$
+\end{frame}
+\begin{frame}{0-1 \textsc{Rucksack}-Problem}
+    Maximaler Profit ohne Überschreitung des Rucksackvolumen.
+    Idee: Profit diskret erhöhen und prüfen ob mehr gehen würde.
+    Hierzu benötigen wir eine Funktion die für einen bestimmten Wert $\alpha$ das minimal benötige Volumen zurück gibt.
+    So können wir prüfen ob unser Rucksackvolumen $B$ bei einem bestimmten Profit $\alpha$ überschritten ist.
+    Dynamische Lösung: Schritt für Schritt an die optimale Lösung heran arbeiten.
+\end{frame}
+\begin{frame}{0-1 \textsc{Rucksack}-Problem}
+    Für $j \in \{0,1,...,n\}$ und $\alpha \in \mathbb{Z}$ sei $F_j(\alpha)$ das kleinste benötigte Rucksackvolumen, mit dem
+    man einen Wert von mindestens $\alpha$ erzielen kann, wenn man die ersten $j$ Waren einpacken darf. 
+    
+    \begin{equation*}
+        F_j(\alpha) = \min\{\vol(R) \mid R \subseteq \{1,...,j\}, p(R) \geq \alpha  \}
+    \end{equation*}
+    
+    Rekursion:
+    \begin{equation*}
+        F_j(\alpha) = \begin{cases}
+        0 & \text{für } \alpha\leq 0, j \in \{0,...,n \} \\
+        \infty & \text{für } \alpha\geq 1, j = 0 \\
+        \min\{F_{j-1}(\alpha-p_j) + \vol(j), F_{j-1}(\alpha) \} & \text{sonst}
+        \end{cases}       
+    \end{equation*}
+\end{frame}
+
+\begin{frame}{Algorithmus \textsc{DynRucksack}}
+    Gesucht ist insgesamt also das größte $\alpha$, sodass $F_n(\alpha)$ noch in den Rucksack der Kapazität $B$
+    passt, d.h. $\OPT(I)=\max\{ \alpha \mid F_n(\alpha) \leq B \}$.
+    
+    
+    \begin{algorithmic}
+        \State $\alpha:=0;$
+        \Repeat
+        \State $\alpha:=\alpha+1;$
+        \For{$j:=1$ \textbf{to} $n$}
+        \State $F_j(\alpha):=\min\{F_{j-1}(\alpha-p_j)+\text{vol}(j),F_{j-1}(\alpha)\};$
+        \EndFor
+        \Until{$B < F_n(\alpha)$}
+        \State gib $\alpha-1$ aus$;$
+    \end{algorithmic}
+\end{frame}
+\begin{frame}{Komplexität von \textsc{DynRucksack}}
+%    Innere Schleife: $n$-mal \\
+%    Äußere Schleife: $\alpha$-mal \newline       
+    $\mathcal{O}( n \cdot \alpha) = \mathcal{O}( n \cdot \OPT(I))$ \\~\\
+    \pause    
+    Es gilt $P_{\text{max}} \leq \text{OPT}(I) \leq n \cdot P_{\text{max}}$ 
+    mit $P_{\text{max}}=\max\{p_j \mid j \in \{1,...,n\}\}$ \\~\\
+    \pause
+    Warum?
+    \begin{itemize}
+        \item Untere Grenze: \\ Die minimale Rucksackfüllung beträgt $P_{\text{max}}$, da im schlimmsten Fall nur der wertvollste Gegenstand mitgenommen werden kann.
+        \item Obere Grenze:  \\ Im Extremfall enthält die Rucksackfüllung alle $n$ Gegenstände, die alle den Preis $P_{\text{max}}$ haben. Somit ergibt sich der maximale Warenwert von $n \cdot P_{\text{max}}$.
+    \end{itemize} ~\\
+    
+    $\Rightarrow \mathcal{O}( n \cdot n \cdot P_{\max}) = \mathcal{O}( n^2 \cdot P_{\max})$    
+\end{frame}
