@@ -2,9 +2,87 @@
 \section{Pseudopolynomielle Algorithmen}
 
 \begin{frame}{Pseudopolynomielle Algorithmen}
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
-	Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
-	Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
-	Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.
-	Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.      
+Definition:
+
+Sei $\Pi$ ein kombinatorisches Optimierungsproblem, so dass für alle Instanzen $I$ gilt, dass alle in $I$ vorkommenden Zahlen natürliche Zahlen sind. Sei maxnr($I$) die größte in $I$ vorkommende Zahl. Ein Algorithmus für $\Pi$ heißt pseudopolynomiell, falls es ein Polynom poly(.,.)  gibt, so 
+dass für alle Instanzen $I$ seine Laufzeit poly(|$I$| ,maxnr($I$)) ist. 
+
+\end{frame}
+\begin{frame}
+Bedeutung:
+
+\begin{itemize}
+\item
+Die Laufzeit ist polynomiell in der Eingabelänge und der größten vorkommenden Zahl beschränkt
+
+\item
+Das Problem ist (unter der Annahme P $\neq$ PN) nur für Eingaben mit großen Zahlen schwer lösbar, sonst effizient
+
+\end{itemize}
+
+Verwendung:
+\begin{itemize}
+\item
+Macht NP-Vollständige Probleme unter gewissen Einschränkungen effizient lösbar
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\textbf{Verständliches Beispiel:}
+\textbf{Primzahltest}
+
+\begin{itemize}
+\item
+Testet, ob eine gegebene Zahl eine Primzahl ist
+\item
+Klassisches Verfahren: Teile die Eingabe $n$ durch alle Primzahlen mit $2 \leq p \leq \sqrt{n}$
+\end{itemize}
+
+\textbf{Eingabe:} Zahl $n$ \newline
+\textbf{Ausgabe:} $true$ falls n zusammengesetzt wurde, $false$ sonst.\newline
+
+\begin{algorithmic}
+
+\For{Primzahlen $p$ mit $2 \leq p \leq \sqrt{n}$}
+\If{$n \mod{p} = 0$}
+	\State return $true$
+\Else
+	\State return $false$
+\EndIf
+\EndFor
+\end{algorithmic}
+\end{frame}
+
+\begin{frame}
+Problem:
+
+\begin{itemize}
+\item
+Benötigt n-2 Divisionen, die laufzeit ist also linear in n
+\item
+Aber: Komplexität wird in der Eingabelänge |$n$| berechnet
+\item
+Daher: Exponentielle Laufzeit, problematisch bei großen Eingaben
+TODO: Erklären warum man Eingabelänge betrachtet (Mehr Bits usw!)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+Anwendung auf \textsc{Rucksack}
+\newline
+
+Algorithmus: \newline
+
+\begin{algorithmic}
+\State $\alpha:=0;$
+\Repeat
+	\State $\alpha:=\alpha+1;$
+	\For{$j:=1$ \textbf{to} $n$}
+		\State $F_j(\alpha):=\min\{F_{j-1}(\alpha-p_j)+\text{vol}(j),F_{j-1}(\alpha)\};$
+	\EndFor
+\Until{$B < F_n(\alpha)$}
+\State gib $\alpha-1$ aus$;$
+\end{algorithmic}
+
 \end{frame}

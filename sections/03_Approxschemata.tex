@@ -2,9 +2,16 @@
 \section{Approximationsschemata}
 
 \begin{frame}{Approximationsschemata}	
-    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
-    Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
-    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
-    Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.
-    Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.      
+    Definition:
+			
+Sei $\Pi$ ein Optimierungsproblem. Sei $A$ ein Approximationsalgoritmhus für $\Pi$, der als Eingabe eine Probleminstanz $I$ von $\Pi$ \textit{und} ein $\epsilon$ mit $0 < \epsilon < 1$ bekommt.
+
+\begin{enumerate}
+\item
+$A$ ist ein \textit{polynomielles Approximationsschema} (PAS; engl.: \textit{polynomial approximation scheme}) für $\Pi$, wenn \textit{A} zu jeder Probleminstanz $I$ und für jedes $\epsilon \in ] 0,1 [$ in Zeit $\mathcal O(poly(|I|)$ eine zulässige Lösung zu \textit{I} mit relativem Fehler $\epsilon_A(\textit{I},\epsilon) \leqslant \epsilon$ berechnet.
+
+\item
+$A$ ist ein \textit{streng polynomielles Approximationsschema} (FPAS; engl.: \textit{fully PAS}), wenn $A$ ein PAS mit Laufzeit $\mathcal O(poly|I|, \frac{1}{\epsilon}$) ist.
+
+\end{enumerate}		      
 \end{frame}
