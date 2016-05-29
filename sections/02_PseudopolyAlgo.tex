@@ -39,19 +39,22 @@ Testet, ob eine gegebene Zahl eine Primzahl ist
 Klassisches Verfahren: Teile die Eingabe $n$ durch alle Primzahlen mit $2 \leq p \leq \sqrt{n}$
 \end{itemize}
 
-\textbf{Eingabe:} Zahl $n$ \newline
-\textbf{Ausgabe:} $true$ falls n zusammengesetzt wurde, $false$ sonst.\newline
-
-\begin{algorithmic}
-
-\For{Primzahlen $p$ mit $2 \leq p \leq \sqrt{n}$}
-\If{$n \mod{p} = 0$}
-	\State return $true$
-\Else
-	\State return $false$
-\EndIf
-\EndFor
-\end{algorithmic}
+\begin{algorithm}[H]
+\caption{Naiver Primzahltest}
+    \begin{algorithmic}
+        \Require{ Zahl $n$}
+        \Ensure{$true$ falls $n$ zusammengesetzt wurde, $false$ sonst.}
+        \Function{IsPrim}{$n$}
+            \For{Primzahlen $p$ mit $2 \leq p \leq \sqrt{n}$}
+            \If{$n \mod{p} = 0$}
+                  	\State return $true$
+            \Else
+                  	\State return $false$
+            \EndIf
+            \EndFor
+        \EndFunction
+    \end{algorithmic}
+\end{algorithm}
 \end{frame}
 
 \begin{frame}

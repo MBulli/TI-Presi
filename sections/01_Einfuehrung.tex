@@ -23,7 +23,7 @@
 \begin{frame}
     TODO Viz
 \end{frame}
-\begin{frame}{\textsc{Rucksack}-Problem formel}
+\begin{frame}{\textsc{Rucksack}-Problem formal}
     \begin{itemize}
         \item $\begin{aligned}[t] 
             \mathcal{D}=\{\langle W,\vol,p,B \rangle \mid & W=\{1,...,n\}, & \\
@@ -74,17 +74,22 @@
     Gesucht ist insgesamt also das größte $\alpha$, sodass $F_n(\alpha)$ noch in den Rucksack der Kapazität $B$
     passt, d.h. $\OPT(I)=\max\{ \alpha \mid F_n(\alpha) \leq B \}$.
     
-    
-    \begin{algorithmic}
-        \State $\alpha:=0;$
-        \Repeat
-        \State $\alpha:=\alpha+1;$
-        \For{$j:=1$ \textbf{to} $n$}
-        \State $F_j(\alpha):=\min\{F_{j-1}(\alpha-p_j)+\text{vol}(j),F_{j-1}(\alpha)\};$
-        \EndFor
-        \Until{$B < F_n(\alpha)$}
-        \State gib $\alpha-1$ aus$;$
-    \end{algorithmic}
+\begin{algorithm}[H]
+    \caption{Exakter \rucksack/ Algorithmus}
+        \begin{algorithmic}
+            \State $\alpha:=0;$
+            \Repeat
+            \State $\alpha:=\alpha+1;$
+            \For{$j:=1$ \textbf{to} $n$}
+            \State $F_j(\alpha):=\min\{F_{j-1}(\alpha-p_j)+\text{vol}(j),F_{j-1}(\alpha)\};$
+            \EndFor
+            \Until{$B < F_n(\alpha)$}
+            \State gib $\alpha-1$ aus$;$
+        \end{algorithmic}
+\end{algorithm}
+
+
+
 \end{frame}
 \begin{frame}{Komplexität von \textsc{DynRucksack}}
 %    Innere Schleife: $n$-mal \\
@@ -92,7 +97,7 @@
     $\mathcal{O}( n \cdot \alpha) = \mathcal{O}( n \cdot \OPT(I))$ \\~\\
     \pause    
     Es gilt $P_{\text{max}} \leq \text{OPT}(I) \leq n \cdot P_{\text{max}}$ 
-    mit $P_{\text{max}}=\max\{p_j \mid j \in \{1,...,n\}\}$ \\~\\
+    \quad mit $P_{\text{max}}=\max\{p_j \mid j \in \{1,...,n\}\}$ \\~\\
     \pause
     Warum?
     \begin{itemize}

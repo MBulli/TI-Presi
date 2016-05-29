@@ -19,6 +19,7 @@
 \usepackage{subfigure}
 \usepackage{times}           % scalable fonts
 \usepackage{docmute}
+\usepackage{algorithm}
 \usepackage{algpseudocode}	% for nice algorithm writing
 
 
@@ -28,6 +29,10 @@
 \usefonttheme{professionalfonts}
 \DeclareMathOperator{\vol}{vol}
 \DeclareMathOperator{\OPT}{OPT}
+
+\makeatletter
+    \@ifdefinable{\rucksack}{\def\rucksack/{\textsc{Rucksack}}}
+\makeatother
 
 % Adds titles for each section using section name as title
 \AtBeginSection[]{
