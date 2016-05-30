@@ -2,10 +2,39 @@
 \section{Einführung}
 
 \begin{frame}{Einführung}
-    \begin{itemize}
-		
+	\begin{minipage}[t][0.25\textheight]{1\textwidth}
+		\centering
+		{\textit{\qq{I can't find an efficient algorithm, \\ but neither can all these famous people.}} \\ --- Garey und Johnson ---}
+	\end{minipage}
+	\pause
+	\begin{minipage}[t][0.5\textheight]{1\textwidth}
+	\begin{itemize}
+		\item NP-vollständige Probleme bereiten Kopfschmerzen (Unter Annahme NP $\neq$ P)
+		\item Ein Problem ist NP-schwer, wenn es keinen Algorithmus gibt, der
+			\begin{itemize}
+				\item	deterministisch,
+				\item exakt für alle Eingaben und 
+				\item	effizient für alle Eingaben arbeitet.
+			\end{itemize}
 		\end{itemize}
+	\end{minipage}
 \end{frame}
+
+\begin{frame}{Auswege aus der NP-Vollständigkeit}
+\begin{itemize}
+	\item In der Praxis sind NP-vollständige Problem jedoch trotzdem gut lösbar
+	\item Auflockerung der obigen Bedingungen
+	\item Effizient für \st{alle} gewisse Eingaben 
+	\begin{itemize}
+		\item[] $\Rightarrow$ Pseudopolynomielle Algorithmen
+	\end{itemize}
+	\item \st{Exakte} Approximierte Lösung
+	\begin{itemize}
+		\item[] $\Rightarrow$ Polynomielle Approximationsschemata
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
 \begin{frame}{\textsc{Rucksack}-Problem}
     Grundidee: \qq{Qual der Wahl}
     
@@ -18,10 +47,10 @@
     \end{itemize}
     \alert{Welche Gegenstände sollten für den maximalen Profit gewählt werden?} 
 \end{frame}
-\begin{frame}
+\begin{frame}{Beispiel}
     \begin{figure}[ht]
     	\centering
-    	\includegraphics[width=1\textwidth]{img/Rucksack.pdf}
+    	\includegraphics[width=0.9\textwidth]{img/Rucksack.pdf}
     	\caption{Rucksackproblem}
     	\label{fig:rucksack}
     \end{figure}
