@@ -15,3 +15,36 @@ $A$ ist ein \textit{streng polynomielles Approximationsschema} (FPAS; engl.: \te
 
 \end{enumerate}		      
 \end{frame}
+
+\section{Algorithmus $\text{AR}_k$}
+\begin{frame}{Algorithmus $\text{AR}_k$ Überlegung}	
+	\begin{itemize}
+		\item 
+		Laufzeit des \textsc{DynRucksack} Algorithmus: $\mathcal O(n^2 \cdot P_{\max})$ 
+		\item
+		Laufzeit ist abhängig von $P_{\max}$
+		\item
+		$\Rightarrow$ Verringere $P_{\max}$ um die Laufzeit zu verbessern
+	\end{itemize}
+\end{frame}
+\begin{frame}{Algorithmus $\text{AR}_k$ Vorgehen}	
+	\begin{itemize}
+		\item 
+		Man reduziere alle Preise der Waren in $I$ um $k$ d.h. ersetze $p_j$ durch $\displaystyle \lfloor \frac {p_j}{k} \rfloor $
+		\item
+		Löse die neue Eingabemenge $I_{red}$ mittels \textsc{DynRucksack} und erhalte Lösungsmenge $R_k$
+		\item
+		Die Lösungsmenge $R_k$ ist eine zulässige Lösung für $I$
+		
+	\end{itemize}
+	$\Rightarrow$ Laufzeit: $\displaystyle \mathcal O(n^2 \cdot \frac{P_{\max}}{k})$
+\end{frame}
+
+\begin{frame}{Algorithmus $\text{AR}_k$ Nachteil}	
+	\begin{itemize}
+		\item 
+		Durch die Ersetzung der Preise $p_j$ um $\displaystyle \lfloor \frac {p_j}{k} \rfloor $ ensteht ein (relativer) Fehler.
+		
+	\end{itemize}
+	$\Rightarrow$ Relativer Fehler: $\varepsilon_{AR_k}(I) \le \frac{k \cdot n}{P_{\max}}$
+\end{frame}
