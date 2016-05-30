@@ -14,23 +14,16 @@ Was bedeutet pseudopolynomiell?
 		\item Problemgröße: Anzahl der Elemente in der Liste $\widehat{=}$ Länge der Eingabe
 		\item	Sortieralgorithmen sind also \textbf{nicht} pseudopolynomiell, da die Eingabe bereits die Anzahl der elemente ist, die eigentliche darstellung der Elemente ist irrelevant
 	\end{itemize}
-
+	
 \end{itemize}
-
-
 \end{frame}
-
-
-
 
 \begin{frame}{Pseudopolynomielle Algorithmen}
 \textbf{Weiteres Beispiel: Primzahltest}
 
 \begin{itemize}
-\item
-Testet, ob eine gegebene Zahl eine Primzahl ist
-\item
-Klassisches Verfahren: Teile die Eingabe $n$ durch alle ganzen Zahlen $p < \sqrt{n}$
+	\item Testet, ob eine gegebene Zahl eine Primzahl ist
+	\item Klassisches Verfahren: Teile die Eingabe $n$ durch alle ganzen Zahlen $p < \sqrt{n}$
 \end{itemize}
 
 \begin{algorithm}[H]
@@ -55,14 +48,10 @@ Klassisches Verfahren: Teile die Eingabe $n$ durch alle ganzen Zahlen $p < \sqrt
 Problem:
 
 \begin{itemize}
-\item
-Benötigt naiv $n-2$ Divisionen.
-\item
-Aber: Komplexität wird in der Eingabelänge |$n$| berechnet, hier die anzahl an benötigten Bits
-\item
-Die Komplexität des Algorithmus hängt also logarithmisch von n ab, daher hat der Algorithmus eine exponentielle Laufzeit $\mathcal{O}(2^{|n|}) = \mathcal{O}(2^{\log_2{(n)}})$
-\item Daher ist der naive Primzahltest Algorithmus pseudopolynomiell
-
+	\item Benötigt naiv $n-2$ Divisionen.
+	\item Aber: Komplexität wird in der Eingabelänge |$n$| berechnet, hier die anzahl an benötigten Bits
+	\item Die Komplexität des Algorithmus hängt also logarithmisch von n ab, daher hat der Algorithmus eine exponentielle Laufzeit $\mathcal{O}(2^{|n|}) = \mathcal{O}(2^{\log_2{(n)}})$
+	\item Daher ist der naive Primzahltest Algorithmus pseudopolynomiell
 \end{itemize}
 \end{frame}
 
@@ -98,10 +87,7 @@ Bereits bekannt: Komplexität $\Rightarrow \mathcal{O}( n \cdot \OPT(I)) = \math
 	Die Laufzeit wird also exponentiell in der Eingabelänge
 	\item
 	Wenn die Eingabelänge polynomiell ist, dann läuft auch der Algorithmus polynomiell. Ist die Eingabelänge exponentiell groß, dann ist auch der Algorithmus exponentiell.
-	\item
-	$\Rightarrow$ Pseudopolynomieller Algorithmus
-
-
+	\item $\Rightarrow$ Pseudopolynomieller Algorithmus
 \end{itemize}
 
 \end{frame}
@@ -117,18 +103,12 @@ dass für alle Instanzen $I$ seine Laufzeit poly(|$I$| ,maxnr($I$)) ist.
 Bedeutung:
 
 \begin{itemize}
-\item
-Die Laufzeit ist polynomiell in der Eingabelänge und der größten vorkommenden Zahl beschränkt
-
-\item
-Das Problem ist (unter der Annahme P $\neq$ PN) nur für Eingaben mit großen Zahlen schwer lösbar, sonst effizient
-
+	\item Die Laufzeit ist polynomiell in der Eingabelänge und der größten vorkommenden Zahl beschränkt
+	\item Das Problem ist (unter der Annahme P $\neq$ PN) nur für Eingaben mit großen Zahlen schwer lösbar, sonst effizient
 \end{itemize}
 
 Verwendung:
 \begin{itemize}
-\item
-Macht NP-Vollständige Probleme unter gewissen Einschränkungen effizient lösbar
-
+	\item Macht NP-Vollständige Probleme unter gewissen Einschränkungen effizient lösbar
 \end{itemize}
 \end{frame}
