@@ -6,28 +6,28 @@
 \begin{itemize}
 \item Bisher: Konkrete Algorithmen, die eine Lösung eines Optimierungsproblem bis zu einer gültigen Schranke annähern
 \item Für jede vorgegebene Schranke kann ein Approximationsalgorithmus gefunden werden, was unbefriedigend ist
-\item Einführung einer Fehlertoleranz $\epsilon$
-\item $\epsilon$ ist die maximale relative Abweichung vom Optimalwert
-\item \textbf{Approximationsschema}: Familie aller Approximationsalgorithmen, die ein Problem für $\epsilon > 0$ lösen
+\item Einführung einer Fehlertoleranz $\varepsilon$
+\item $\varepsilon$ ist die maximale relative Abweichung vom Optimalwert
+\item \textbf{Approximationsschema}: Familie aller Approximationsalgorithmen, die ein Problem für $\varepsilon > 0$ lösen
 \end{itemize}
 \end{frame}
 
 \begin{frame}{Approximationsschemata}	
     Definition:
 			
-Sei $\Pi$ ein Optimierungsproblem. Sei $A$ ein Approximationsalgoritmhus für $\Pi$, der als Eingabe eine Probleminstanz $I$ von $\Pi$ \textit{und} ein $\epsilon$ mit $0 < \epsilon < 1$ bekommt.
+Sei $\Pi$ ein Optimierungsproblem. Sei $A$ ein Approximationsalgoritmhus für $\Pi$, der als Eingabe eine Probleminstanz $I$ von $\Pi$ \textit{und} ein $\varepsilon$ mit $0 < \varepsilon < 1$ bekommt.
 
 \begin{enumerate}
 \item
-$A$ ist ein \textbf{\textit{polynomielles Approximationsschema} (PAS; engl.: \textit{polynomial approximation scheme})} für $\Pi$, wenn \textit{A} zu jeder Probleminstanz $I$ und für jedes $\epsilon \in ] 0,1 [$ in Zeit $\mathcal O(poly(|I|))$ eine zulässige Lösung zu \textit{I} mit relativem Fehler $\epsilon_A(\textit{I},\epsilon) \leqslant \epsilon$ berechnet.
+$A$ ist ein \textbf{\textit{polynomielles Approximationsschema} (PAS; engl.: \textit{polynomial approximation scheme})} für $\Pi$, wenn \textit{A} zu jeder Probleminstanz $I$ und für jedes $\varepsilon \in ] 0,1 [$ in Zeit $\mathcal O(poly(|I|))$ eine zulässige Lösung zu \textit{I} mit relativem Fehler $\varepsilon_A(\textit{I},\varepsilon) \le \varepsilon$ berechnet.
 
 \item
-$A$ ist ein \textbf{\textit{streng polynomielles Approximationsschema} (FPAS; engl.: \textit{fully PAS})}, wenn $A$ ein PAS mit Laufzeit $\mathcal O(poly|I|, \frac{1}{\epsilon}$) ist.
+$A$ ist ein \textbf{\textit{streng polynomielles Approximationsschema} (FPAS; engl.: \textit{fully PAS})}, wenn $A$ ein PAS mit Laufzeit $\mathcal O(poly(|I|, \frac{1}{\varepsilon}))$ ist.
 
 \end{enumerate}		      
 \end{frame}
 
-\section{Algorithmus $\text{AR}_k$}
+\section{Entwicklung eines FPAS}
 \begin{frame}{Algorithmus $\text{AR}_k$ Überlegung}	
 	\begin{itemize}
 		\item 
@@ -55,14 +55,64 @@ $A$ ist ein \textbf{\textit{streng polynomielles Approximationsschema} (FPAS; en
 	\begin{itemize}
 		\item 
 		Durch die Ersetzung der Preise $p_j$ um $\displaystyle \lfloor \frac {p_j}{k} \rfloor $ ensteht ein (relativer) Fehler.
-		
+		\item
+		$AR_k(I) = [...] = \text{OPT}(I) - k \cdot \vert R^* \vert \ge \text{OPT}(I) - k \cdot n$
 	\end{itemize}
-	$\Rightarrow$ Relativer Fehler: $\varepsilon_{AR_k}(I) \le \frac{k \cdot n}{P_{\max}}$
+	$\Rightarrow \vert AR_k(I) - \text{OPT}(I) \vert \le k \cdot n$
+	\\~\\
+	\begin{itemize}
+		\item
+		$\displaystyle \varepsilon_{AR_k}(I) = \frac {\text{absolute Güte}} {\text{relative Güte}} = \frac{\vert AR_k(I) - \text{OPT}(I) \vert}{\text{OPT}(I)} \le \frac{k \cdot  n}{\text{OPT(I)}} \le \frac{k \cdot n}{P_{\max}}$
+	\end{itemize}
+	$\Rightarrow$ Relativer Fehler: $\displaystyle \varepsilon_{AR_k}(I) \le \frac{k \cdot n}{P_{\max}}$
 \end{frame}
 
-\begin{frame}{FPAS}
-Angabe eines FPAS für das Rucksackproblem
+\begin{frame}{FPAS Wiederhohlung}
+	Vorraussetzungen für einen FPAS:
 	\begin{itemize}
-		\item Kann aus dem pseudopolynomiellen Algorithmus abgeleitet werden
+		\item für $\varepsilon \in ]0, 1[$ 
+		\item mit $\varepsilon_A(I,\varepsilon) \le \varepsilon$
+		\item in $\displaystyle \mathcal O(poly(\vert I \vert, \frac{1}{\varepsilon}))$
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{Algorithmus \textsc{FPASRucksack} Überlegung}
+	\begin{itemize}
+		\item
+		Suchen eines Algorithmus dessen Laufzeit abhängig vom übergebenen relativen Fehler ist.
+		\item
+		Der $AR_k$ Algorithmus liefert bereits ein Ergebnis mit einem relativen Fehler abhängig eines Wertes $k$.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Algorithmus \textsc{FPASRucksack} Bestimmung von $k$}
+	Bestimme Übergabeparameter $k$ des $AR_k$ anhand des übergebenen Fehlers $\varepsilon$.
+	\begin{itemize}
+		\item
+		Relativer Fehler des $AR_k$: $\displaystyle \varepsilon_{AR_k}(I) \le \frac{k \cdot n}{P_{\max}}$
+		\pause
+		\item[]
+		$\displaystyle \varepsilon \cdot P_{\max} \le k \cdot n$
+		\item[]
+		$\displaystyle \varepsilon \cdot \frac{P_{\max}}{n} \le k$
+		\item[]
+		$\displaystyle k := \varepsilon \cdot \frac{P_{\max}}{n}$
+	\end{itemize}
+
+
+
+\end{frame}
+\begin{frame}{Algorithmus \textsc{FPASRucksack} Laufzeit}
+	\begin{itemize}
+		\item
+		Laufzeit des $AR_k$: $\displaystyle \mathcal O(n^2 \cdot \frac{P_{\max}}{k})$
+		\pause
+		\item[]
+		$\displaystyle \mathcal O(n^2 \cdot \frac{P_{\max}}{\varepsilon \cdot \frac{P_{\max}}{n}})$
+		\item[]
+		$\displaystyle \mathcal O(n^2 \cdot \frac{n \cdot P_{\max}}{\varepsilon \cdot P_{\max}})$
+		\item[]
+		$\displaystyle \mathcal O(n^3 \cdot \frac{1}{\varepsilon})$
+	\end{itemize}
+
 \end{frame}
