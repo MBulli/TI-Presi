@@ -4,7 +4,7 @@
 \begin{frame}{Einführung}
 	\begin{minipage}[t][0.25\textheight]{1\textwidth}
 		\centering
-		{\textit{\qq{I can't find an efficient algorithm, \\ but neither can all these famous people.}} \\ --- Garey und Johnson ---}
+		\qq{I can't find an efficient algorithm, \\ but neither can all these famous people.} \\ --- \textit{Garey und Johnson} ---
 	\end{minipage}
 	\pause
 	\begin{minipage}[t][0.5\textheight]{1\textwidth}
@@ -36,6 +36,8 @@
 \end{frame}
 
 \begin{frame}{\textsc{Rucksack}-Problem}
+    \textsc{Rucksack} ist ein NP-vollständiges Problem \\~\\
+    \pause
     Grundidee: \qq{Qual der Wahl}
     
     \begin{itemize}
@@ -43,7 +45,7 @@
         \item Im Laden findet er $n$ Gegenstände
         \item Der $i$-te Gegenstand hat den Wert $p_i$ und das Gewicht $w_i$
         \item Sein Rucksack kann höchstens das Gewicht $B$ tragen
-        \item $w_i$ und $B$ sind ganze Zahlen ($p_i$ können aus $\mathbb{R}^+$ sein)
+        \item $p_i, w_i$ und $B$ sind natürliche Zahlen
     \end{itemize}
     \alert{Welche Gegenstände sollten für den maximalen Profit gewählt werden?} 
 \end{frame}
@@ -57,23 +59,23 @@
 \end{frame}
 \begin{frame}{\textsc{Rucksack}-Problem formal}
     \begin{itemize}
-        \item $\begin{aligned}[t] 
-            \mathcal{D}=\{\langle W,\vol,p,B \rangle \mid & W=\{1,...,n\}, & \\
-                                                                & \vol \colon W \to \mathbb{N}, & \\
+        \item $\begin{aligned}[t] \displaystyle
+            \mathcal{D}=\{\langle W,w,p,B \rangle \mid & W=\{1,...,n\}, & \\
+                                                                & w \colon W \to \mathbb{N}, & \\
                                                                 & p \colon W \to \mathbb{N}, & \\
                                                                 & B \in \mathbb{N}, & \\
-                                                                & \forall w \in W \colon \vol(w) \leq B \}
+                                                                & \forall i \in W \colon w_i \leq B\}
          \end{aligned}$
         
-        \item $S( \langle W, \vol, p, B \rangle )=\{ A \subseteq W \mid \sum_{w\in A}{ \vol(w)} \leq B \}$
-        \item $f(A)=\sum_{w\in A}{p_w}$
-        \item $\max$
+        \item $\displaystyle S( \langle W, w, p, B \rangle )=\{ A \subseteq W \mid \sum_{i\in A}{ w_i} \leq B \}$
+        \item $\displaystyle f(A)=\sum_{i\in A}{p_i}$
+        \item $\displaystyle \max$
     \end{itemize}
 \end{frame}
 \begin{frame}{0-1 \textsc{Rucksack}-Problem}
     maximiere $\displaystyle \sum_{i=1}^{n}{x_i p_i}$
        
-    unter der Bedingung $\displaystyle \sum_{i=1}^{n}{x_i \vol(w_i) \leq B}$
+    unter der Bedingung $\displaystyle \sum_{i=1}^{n}{x_i w_i \leq B}$
        
     mit $x_i=1$ wenn Gegenstand $i$ im Rucksack enthalten ist, sonst $x_i=0$
 \end{frame}
@@ -89,7 +91,7 @@
     man einen Wert von mindestens $\alpha$ erzielen kann, wenn man die ersten $j$ Waren einpacken darf. 
     
     \begin{equation*}
-        F_j(\alpha) = \min\{\vol(R) \mid R \subseteq \{1,...,j\}, p(R) \geq \alpha  \}
+        F_j(\alpha) = \min\{w(R) \mid R \subseteq \{1,...,j\}, p(R) \geq \alpha  \}
     \end{equation*}
     
     Rekursion:
@@ -97,7 +99,7 @@
         F_j(\alpha) = \begin{cases}
         0 & \text{für } \alpha\leq 0, j \in \{0,...,n \} \\
         \infty & \text{für } \alpha\geq 1, j = 0 \\
-        \min\{F_{j-1}(\alpha-p_j) + \vol(j), F_{j-1}(\alpha) \} & \text{sonst}
+        \min\{F_{j-1}(\alpha-p_j) + w_j, F_{j-1}(\alpha) \} & \text{sonst}
         \end{cases}       
     \end{equation*}
 \end{frame}
@@ -113,7 +115,7 @@
             \Repeat
             \State $\alpha:=\alpha+1;$
             \For{$j:=1$ \textbf{to} $n$}
-            \State $F_j(\alpha):=\min\{F_{j-1}(\alpha-p_j)+\text{vol}(j),F_{j-1}(\alpha)\};$
+            \State $F_j(\alpha):=\min\{F_{j-1}(\alpha-p_j)+w_j,F_{j-1}(\alpha)\};$
             \EndFor
             \Until{$B < F_n(\alpha)$}
             \State gib $\alpha-1$ aus$;$
