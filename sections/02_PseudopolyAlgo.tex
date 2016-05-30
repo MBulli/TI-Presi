@@ -36,16 +36,16 @@ Macht NP-Vollständige Probleme unter gewissen Einschränkungen effizient lösba
 \item
 Testet, ob eine gegebene Zahl eine Primzahl ist
 \item
-Klassisches Verfahren: Teile die Eingabe $n$ durch alle Primzahlen mit $2 \leq p \leq \sqrt{n}$
+Klassisches Verfahren: Teile die Eingabe $n$ durch alle ganzen Zahlen $p < \sqrt{n}$
 \end{itemize}
 
 \begin{algorithm}[H]
 \caption{Naiver Primzahltest}
     \begin{algorithmic}
         \Require{ Zahl $n$}
-        \Ensure{$true$ falls $n$ zusammengesetzt wurde, $false$ sonst.}
+        \Ensure{$true$ falls $n$ durch $p$ teilbar, $false$ sonst.}
         \Function{IsPrim}{$n$}
-            \For{Primzahlen $p$ mit $2 \leq p \leq \sqrt{n}$}
+            \For{Zahl $p$ mit $2 \leq p \leq \sqrt{n}$}
             \If{$n \mod{p} = 0$}
                   	\State return $true$
             \Else
@@ -67,25 +67,31 @@ Benötigt n-2 Divisionen, die laufzeit ist also linear in n
 Aber: Komplexität wird in der Eingabelänge |$n$| berechnet
 \item
 Daher: Exponentielle Laufzeit, problematisch bei großen Eingaben
-TODO: Erklären warum man Eingabelänge betrachtet (Mehr Bits usw!)
+
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+Beweis:
+
 \end{frame}
 
 \begin{frame}
 Anwendung auf \textsc{Rucksack}
 \newline
 
-Algorithmus: \newline
-
-\begin{algorithmic}
-\State $\alpha:=0;$
-\Repeat
-	\State $\alpha:=\alpha+1;$
-	\For{$j:=1$ \textbf{to} $n$}
-		\State $F_j(\alpha):=\min\{F_{j-1}(\alpha-p_j)+\text{vol}(j),F_{j-1}(\alpha)\};$
-	\EndFor
-\Until{$B < F_n(\alpha)$}
-\State gib $\alpha-1$ aus$;$
-\end{algorithmic}
+\begin{algorithm}[H]
+    \caption{Exakter \rucksack/ Algorithmus}
+        \begin{algorithmic}
+            \State $\alpha:=0;$
+            \Repeat
+            \State $\alpha:=\alpha+1;$
+            \For{$j:=1$ \textbf{to} $n$}
+            \State $F_j(\alpha):=\min\{F_{j-1}(\alpha-p_j)+\text{vol}(j),F_{j-1}(\alpha)\};$
+            \EndFor
+            \Until{$B < F_n(\alpha)$}
+            \State gib $\alpha-1$ aus$;$
+        \end{algorithmic}
+\end{algorithm}
 
 \end{frame}
