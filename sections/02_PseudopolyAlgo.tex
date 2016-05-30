@@ -28,7 +28,7 @@ Macht NP-Vollständige Probleme unter gewissen Einschränkungen effizient lösba
 \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Pseudopolynomielle Algorithmen}
 \textbf{Verständliches Beispiel:}
 \textbf{Primzahltest}
 
@@ -57,7 +57,7 @@ Klassisches Verfahren: Teile die Eingabe $n$ durch alle ganzen Zahlen $p < \sqrt
 \end{algorithm}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Pseudopolynomielle Algorithmen}
 Problem:
 
 \begin{itemize}
@@ -71,12 +71,12 @@ Daher: Exponentielle Laufzeit, problematisch bei großen Eingaben
 \end{itemize}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Pseudopolynomielle Algorithmen}
 Beweis:
 
 \end{frame}
 
-\begin{frame}
+\begin{frame}{Pseudopolynomielle Algorithmen}
 Anwendung auf \textsc{Rucksack}
 \newline
 
@@ -94,4 +94,23 @@ Anwendung auf \textsc{Rucksack}
         \end{algorithmic}
 \end{algorithm}
 
+\end{frame}
+
+\begin{frame}{Pseudopolynomielle Algorithmen}
+Bereits bekannt: Komplexität $\Rightarrow \mathcal{O}( n \cdot \OPT(I)) = \mathcal{O}( n^2 \cdot P_{\max})$ 
+\begin{itemize}
+\item
+Aber: Worst-Case $: P_{max} = Opt(I) = \Theta(2^{|I|})$
+\item
+Daher: 
+$\mathcal{O}(n\cdot 2^{|I|})$
+\item
+Die Laufzeit wird also exponentiell in der Eingabelänge
+\item
+Wenn die Eingabelänge polynomiell ist, dann läuft auch der Algorithmus polynomiell. Ist die Eingabelänge exponentiell groß, dann ist auch der Algorithmus exponentiell.
+\item
+\Rightarrow Pseudopolynomieller Algorithmus
+
+
+\end{itemize}
 \end{frame}
