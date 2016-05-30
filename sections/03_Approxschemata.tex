@@ -1,5 +1,16 @@
 % !TeX encoding = UTF-8
 \section{Approximationsschemata}
+\begin{frame}{Approximationsschemata}
+
+
+\begin{itemize}
+\item Bisher: Konkrete Algorithmen, die eine Lösung eines Optimierungsproblem bis zu einer gültigen Schranke annähern
+\item Für jede vorgegebene Schranke kann ein Approximationsalgorithmus gefunden werden, was unbefriedigend ist
+\item Einführung einer Fehlertoleranz $\epsilon$
+\item $\epsilon$ ist die maximale relative Abweichung vom Optimalwert
+\item \textbf{Approximationsschema}: Familie aller Approximationsalgorithmen, die ein Problem für $\epsilon > 0$ lösen
+\end{itemize}
+\end{frame}
 
 \begin{frame}{Approximationsschemata}	
     Definition:
@@ -8,10 +19,10 @@ Sei $\Pi$ ein Optimierungsproblem. Sei $A$ ein Approximationsalgoritmhus für $\
 
 \begin{enumerate}
 \item
-$A$ ist ein \textit{polynomielles Approximationsschema} (PAS; engl.: \textit{polynomial approximation scheme}) für $\Pi$, wenn \textit{A} zu jeder Probleminstanz $I$ und für jedes $\epsilon \in ] 0,1 [$ in Zeit $\mathcal O(poly(|I|))$ eine zulässige Lösung zu \textit{I} mit relativem Fehler $\epsilon_A(\textit{I},\epsilon) \leqslant \epsilon$ berechnet.
+$A$ ist ein \textbf{\textit{polynomielles Approximationsschema} (PAS; engl.: \textit{polynomial approximation scheme})} für $\Pi$, wenn \textit{A} zu jeder Probleminstanz $I$ und für jedes $\epsilon \in ] 0,1 [$ in Zeit $\mathcal O(poly(|I|))$ eine zulässige Lösung zu \textit{I} mit relativem Fehler $\epsilon_A(\textit{I},\epsilon) \leqslant \epsilon$ berechnet.
 
 \item
-$A$ ist ein \textit{streng polynomielles Approximationsschema} (FPAS; engl.: \textit{fully PAS}), wenn $A$ ein PAS mit Laufzeit $\mathcal O(poly|I|, \frac{1}{\epsilon}$) ist.
+$A$ ist ein \textbf{\textit{streng polynomielles Approximationsschema} (FPAS; engl.: \textit{fully PAS})}, wenn $A$ ein PAS mit Laufzeit $\mathcal O(poly|I|, \frac{1}{\epsilon}$) ist.
 
 \end{enumerate}		      
 \end{frame}
@@ -47,4 +58,11 @@ $A$ ist ein \textit{streng polynomielles Approximationsschema} (FPAS; engl.: \te
 		
 	\end{itemize}
 	$\Rightarrow$ Relativer Fehler: $\varepsilon_{AR_k}(I) \le \frac{k \cdot n}{P_{\max}}$
+\end{frame}
+
+\begin{frame}{FPAS}
+Angabe eines FPAS für das Rucksackproblem
+	\begin{itemize}
+		\item Kann aus dem pseudopolynomiellen Algorithmus abgeleitet werden
+	\end{itemize}
 \end{frame}
