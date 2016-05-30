@@ -2,35 +2,29 @@
 \section{Pseudopolynomielle Algorithmen}
 
 \begin{frame}{Pseudopolynomielle Algorithmen}
-Definition:
-
-Sei $\Pi$ ein kombinatorisches Optimierungsproblem, so dass für alle Instanzen $I$ gilt, dass alle in $I$ vorkommenden Zahlen natürliche Zahlen sind. Sei maxnr($I$) die größte in $I$ vorkommende Zahl. Ein Algorithmus für $\Pi$ heißt pseudopolynomiell, falls es ein Polynom poly(.,.)  gibt, so 
-dass für alle Instanzen $I$ seine Laufzeit poly(|$I$| ,maxnr($I$)) ist. 
-
-\end{frame}
-\begin{frame}{Pseudopolynomielle Algorithmen}
-Bedeutung:
+Was bedeutet pseudopolynomiell?
 
 \begin{itemize}
-\item
-Die Laufzeit ist polynomiell in der Eingabelänge und der größten vorkommenden Zahl beschränkt
-
-\item
-Das Problem ist (unter der Annahme P $\neq$ PN) nur für Eingaben mit großen Zahlen schwer lösbar, sonst effizient
+	\item Eigenschaft eines Algorithmus
+	
+	\item Behauptung: Laufzeit ist abhängig von der Länge der Eingabe
+	\item \textbf{Beispiel Sortieralgorithmus}
+	\begin{itemize}
+		\item Eingabe: Liste mit Elemente die sortiert werden sollen
+		\item Problemgröße: Anzahl der Elemente in der Liste $\widehat{=}$ Länge der Eingabe
+		\item	Sortieralgorithmen sind also \textbf{nicht} pseudopolynomiell, da die Eingabe bereits die Anzahl der elemente ist, die eigentliche darstellung der Elemente ist irrelevant
+	\end{itemize}
 
 \end{itemize}
 
-Verwendung:
-\begin{itemize}
-\item
-Macht NP-Vollständige Probleme unter gewissen Einschränkungen effizient lösbar
 
-\end{itemize}
 \end{frame}
 
+
+
+
 \begin{frame}{Pseudopolynomielle Algorithmen}
-\textbf{Verständliches Beispiel:}
-\textbf{Primzahltest}
+\textbf{Weiteres Beispiel: Primzahltest}
 
 \begin{itemize}
 \item
@@ -62,18 +56,14 @@ Problem:
 
 \begin{itemize}
 \item
-Benötigt n-2 Divisionen, die laufzeit ist also linear in n
+Benötigt naiv $n-2$ Divisionen.
 \item
-Aber: Komplexität wird in der Eingabelänge |$n$| berechnet
+Aber: Komplexität wird in der Eingabelänge |$n$| berechnet, hier die anzahl an benötigten Bits
 \item
-Daher: Exponentielle Laufzeit, problematisch bei großen Eingaben
+Die Komplexität des Algorithmus hängt also logarithmisch von n ab, daher hat der Algorithmus eine exponentielle Laufzeit $\mathcal{O}(2^{|n|}) = \mathcal{O}(2^{\log_2{(n)}})$
+\item Daher ist der naive Primzahltest Algorithmus pseudopolynomiell
 
 \end{itemize}
-\end{frame}
-
-\begin{frame}{Pseudopolynomielle Algorithmen}
-Beweis:
-
 \end{frame}
 
 \begin{frame}{Pseudopolynomielle Algorithmen}
@@ -99,18 +89,46 @@ Anwendung auf \textsc{Rucksack}
 \begin{frame}{Pseudopolynomielle Algorithmen}
 Bereits bekannt: Komplexität $\Rightarrow \mathcal{O}( n \cdot \OPT(I)) = \mathcal{O}( n^2 \cdot P_{\max})$ 
 \begin{itemize}
-\item
-Aber: Worst-Case $: P_{max} = Opt(I) = \Theta(2^{|I|})$
-\item
-Daher: 
-$\mathcal{O}(n\cdot 2^{|I|})$
-\item
-Die Laufzeit wird also exponentiell in der Eingabelänge
-\item
-Wenn die Eingabelänge polynomiell ist, dann läuft auch der Algorithmus polynomiell. Ist die Eingabelänge exponentiell groß, dann ist auch der Algorithmus exponentiell.
-\item
-\Rightarrow Pseudopolynomieller Algorithmus
+	\item
+	Aber: Worst-Case $: P_{max} = \OPT(I) = \Theta(2^{|I|})$
+	\item
+	Daher: 
+	$\mathcal{O}(n\cdot 2^{|I|})$
+	\item
+	Die Laufzeit wird also exponentiell in der Eingabelänge
+	\item
+	Wenn die Eingabelänge polynomiell ist, dann läuft auch der Algorithmus polynomiell. Ist die Eingabelänge exponentiell groß, dann ist auch der Algorithmus exponentiell.
+	\item
+	\Rightarrow Pseudopolynomieller Algorithmus
 
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Pseudopolynomielle Algorithmen}
+Definition:
+
+Sei $\Pi$ ein kombinatorisches Optimierungsproblem, so dass für alle Instanzen $I$ gilt, dass alle in $I$ vorkommenden Zahlen natürliche Zahlen sind. Sei maxnr($I$) die größte in $I$ vorkommende Zahl. Ein Algorithmus für $\Pi$ heißt pseudopolynomiell, falls es ein Polynom poly(.,.)  gibt, so 
+dass für alle Instanzen $I$ seine Laufzeit poly(|$I$| ,maxnr($I$)) ist. 
+
+\end{frame}
+\begin{frame}{Pseudopolynomielle Algorithmen}
+Bedeutung:
+
+\begin{itemize}
+\item
+Die Laufzeit ist polynomiell in der Eingabelänge und der größten vorkommenden Zahl beschränkt
+
+\item
+Das Problem ist (unter der Annahme P $\neq$ PN) nur für Eingaben mit großen Zahlen schwer lösbar, sonst effizient
+
+\end{itemize}
+
+Verwendung:
+\begin{itemize}
+\item
+Macht NP-Vollständige Probleme unter gewissen Einschränkungen effizient lösbar
 
 \end{itemize}
 \end{frame}
