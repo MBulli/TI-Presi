@@ -5,43 +5,61 @@
 Was bedeutet pseudopolynomiell?
 
 \begin{itemize}
-	\item Eigenschaft eines Algorithmus
-	
-	\item Behauptung: Laufzeit ist abhängig von der Länge der Eingabe
-	\item \textbf{Beispiel Sortieralgorithmus}
-	\begin{itemize}
-		\item Eingabe: Liste mit Elemente die sortiert werden sollen
-		\item Problemgröße: Anzahl der Elemente in der Liste $\widehat{=}$ Länge der Eingabe
-		\item	Sortieralgorithmen sind also \textbf{nicht} pseudopolynomiell, da die Eingabe bereits die Anzahl der elemente ist, die eigentliche darstellung der Elemente ist irrelevant
-	\end{itemize}
-	
+   	\item Eigenschaft eines Algorithmus
+	\item Die Komplexität wird durch ein Polynom nach oben begrenzt, dass von zwei Variablen abhängt
+    \begin{itemize}
+        \item Die Länge der Eingabe $\abs{I}$ und
+        \item die Länge der größten vorkommenden Zahl $\maxnr(I)$
+    \end{itemize}
+    \item Die Besonderheit ist hier, dass die Kodierung der Zahlen eine Rolle spielt
+    \item Nur nummerische Algorithmen können pseudopolynomiell sein
+    \item Jeder polynomieller Algorithmus ist auch pseudopolynomiell, aber nicht umgekehrt
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Pseudopolynomielle Algorithmen}
-\textbf{Weiteres Beispiel: Primzahltest}
-
+\begin{frame}{Pseudopolynomielle Algorithmen - Primzahltest}
 \begin{itemize}
 	\item Testet, ob eine gegebene Zahl eine Primzahl ist
-	\item Klassisches Verfahren: Teile die Eingabe $n$ durch alle ganzen Zahlen $p < \sqrt{n}$
+	\item Naives Verfahren: Teile die Eingabe $n$ durch alle ganzen Zahlen $\{2,3,...,n\}$
 \end{itemize}
 
 \begin{algorithm}[H]
 \caption{Naiver Primzahltest}
     \begin{algorithmic}
-        \Require{ Zahl $n$}
-        \Ensure{$true$ falls $n$ durch $p$ teilbar, $false$ sonst.}
+        \Require{Natürliche Zahl $n$}
+        \Ensure{$true$ falls $n$ eine Primzahl ist, sonst $false$}
         \Function{IsPrim}{$n$}
-            \For{Zahl $p$ mit $2 \leq p \leq \sqrt{n}$}
-            \If{$n \mod{p} = 0$}
-                  	\State return $true$
-            \Else
-                  	\State return $false$
+            \For{$p=2$ \textbf{to} $n$}
+            \If{$n \Mod{p} = 0$} 
+                \State return $false$
             \EndIf
             \EndFor
+          	\State return $true$
         \EndFunction
     \end{algorithmic}
 \end{algorithm}
+\end{frame}
+
+\begin{frame}{Pseudopolynomielle Algorithmen - Gegenbeispiel}
+    \begin{itemize}
+        \item \textbf{Fakt:} \textsc{Bubblesort} hat eine Laufzeit von $\mathcal{O}(n^2)$
+        \item \textbf{Behauptung:} \textsc{Bubblesort} ist echt-polynomiell
+        \item \textbf{Beweis:}
+        \begin{itemize}
+            \item Gegeben ist eine Liste mit $n$ Integers
+            \item Die Eingabelänge in Bits entspricht somit $x=32n$
+            \item Für die Komplexität ergibt sich
+            \begin{itemize}
+                \item $\mathcal{O}(x^2)=\mathcal{O}((32n)^2)=\mathcal{O}(1024n^2)=\mathcal{O}(n^2)$      
+            \end{itemize}
+            \item[] $\Rightarrow$ \textsc{Bubblesort} ist echt-polynomiell da die Laufzeit nur von der Anzahl der Elemente abhängt
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Pseudopolynomielle Algorithmen - Noch ein Beispiel}
+    Wie sähe ein \textsc{Bubblesort} aus der pseudopolynomiell ist?
+    
 \end{frame}
 
 \begin{frame}{Pseudopolynomielle Algorithmen}
@@ -49,10 +67,21 @@ Problem:
 
 \begin{itemize}
 	\item Benötigt naiv $n-2$ Divisionen.
-	\item Aber: Komplexität wird in der Eingabelänge |$n$| berechnet, hier die anzahl an benötigten Bits
+	\item Aber: Komplexität wird in der Eingabelänge |$n$| berechnet, hier die Anzahl an benötigten Bits
 	\item Die Komplexität des Algorithmus hängt also logarithmisch von n ab, daher hat der Algorithmus eine exponentielle Laufzeit $\mathcal{O}(2^{|n|}) = \mathcal{O}(2^{\log_2{(n)}})$
 	\item Daher ist der naive Primzahltest Algorithmus pseudopolynomiell
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+    	\item \textbf{Beispiel Sortieralgorithmus}
+        \begin{itemize}
+            \item Eingabe: Liste mit Elemente die sortiert werden sollen
+            \item Problemgröße: Anzahl der Elemente in der Liste $\widehat{=}$ Länge der Eingabe
+            \item	Sortieralgorithmen sind also \textbf{nicht} pseudopolynomiell, da die Eingabe bereits die Anzahl der elemente ist, die eigentliche darstellung der Elemente ist irrelevant
+        \end{itemize}
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Pseudopolynomielle Algorithmen}
