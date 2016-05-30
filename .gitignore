@@ -9,7 +9,7 @@
 *.dvi
 # *.ps
 # *.eps
-*.pdf
+tipresi.pdf
 
 *.bbl
 *.bcf
