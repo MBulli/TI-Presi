@@ -73,18 +73,23 @@
     \end{itemize}
 \end{frame}
 \begin{frame}{0-1 \textsc{Rucksack}-Problem}
-    maximiere $\displaystyle \sum_{i=1}^{n}{x_i p_i}$
+\begin{itemize}
+	\item maximiere $\displaystyle \sum_{i=1}^{n}{x_i p_i}$
        
-    unter der Bedingung $\displaystyle \sum_{i=1}^{n}{x_i w_i \leq B}$
+    \item unter der Bedingung $\displaystyle \sum_{i=1}^{n}{x_i w_i \leq B}$
        
-    mit $x_i=1$ wenn Gegenstand $i$ im Rucksack enthalten ist, sonst $x_i=0$
+     \item mit $x_i=1$ wenn Gegenstand $i$ im Rucksack enthalten ist, sonst $x_i=0$
+\end{itemize}
 \end{frame}
 \begin{frame}{0-1 \textsc{Rucksack}-Problem}
-    Maximaler Profit ohne Überschreitung des Rucksackvolumen.
-    Idee: Profit diskret erhöhen und prüfen ob mehr gehen würde.
+\begin{itemize}
+	\item Maximaler Profit ohne Überschreitung des Rucksackvolumen.
+    \item Idee: Profit diskret erhöhen und prüfen ob mehr gehen würde.
     Hierzu benötigen wir eine Funktion die für einen bestimmten Wert $\alpha$ das minimal benötige Volumen zurück gibt.
     So können wir prüfen ob unser Rucksackvolumen $B$ bei einem bestimmten Profit $\alpha$ überschritten ist.
-    Dynamische Lösung: Schritt für Schritt an die optimale Lösung heran arbeiten.
+    
+    \item Dynamische Lösung: Schritt für Schritt an die optimale Lösung heran arbeiten.
+\end{itemize}
 \end{frame}
 \begin{frame}{0-1 \textsc{Rucksack}-Problem}
     Für $j \in \{0,1,...,n\}$ und $\alpha \in \mathbb{Z}$ sei $F_j(\alpha)$ das kleinste benötigte Rucksackvolumen, mit dem
