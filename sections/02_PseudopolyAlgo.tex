@@ -57,9 +57,32 @@ Was bedeutet pseudopolynomiell?
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Pseudopolynomielle Algorithmen - Noch ein Beispiel}
+\begin{frame}{Pseudopolynomielle Algorithmen - BubblesortPseudo}
     Wie sähe ein \textsc{Bubblesort} aus der pseudopolynomiell ist?
     
+\end{frame}
+
+\begin{frame}{Pseudopolynomielle Algorithmen - BubblesortPseudo}
+	
+	\textsc{BubblesortPseudo} wird ein Integer $a$ übergeben. Intern wird ein Array mit der Länge $a$ erzeugt. Anschließend wird das Array zum Sortieren an \textsc{Bubblesort} übergeben.
+	
+	\begin{itemize}
+		
+		\item \textbf{Fakt:} \textsc{BubblesortPseudo} hat auch eine Laufzeit von $\mathcal{O}(n^2)$
+		\item \textbf{Behauptung:} \textsc{BubblesortPseudo} ist pseudopolynomiell
+		\pause
+		\item \textbf{Beweis:} 
+		\begin{itemize}
+			\item Gegeben ist ein Integer $a$ 
+			\item Die Eingabelänge in Bits entspricht somit $x = \lceil \log_2(a) \rceil$
+			\item Die größte durch $x$ Bits darstellbare Zahl (Obere Grenze) ist $2^x$
+			\item Für die Komplexität ergibt sich
+			\begin{itemize}
+				\item $\displaystyle \landau{a^2} = \landau{(2^x)^2}$
+			\end{itemize}
+			\item[] $\Rightarrow$ \textsc{BubblesortPseudo} hat eine Laufzeit die polynomiell von der übergebenen Zahl $a$ abhängt, jedoch pseudopolynomiell zum Verhältnis der Eingabelänge $x$ ist
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Pseudopolynomielle Algorithmen}
