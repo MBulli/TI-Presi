@@ -55,12 +55,15 @@ $A$ ist ein \textbf{\textit{streng polynomielles Approximationsschema} (FPAS; en
 	\begin{itemize}
 		
 		\item
-		$\displaystyle \varepsilon_{AR_k}(I) = \frac {\text{absolute Güte}} {\text{relative Güte}} = \frac{\vert AR_k(I) - \text{OPT}(I) \vert}{\text{OPT}(I)}$ 
+		$\displaystyle \varepsilon_{AR_k}(I) = \frac {\text{absolute Güte}} {\text{optimale Lösung}} = \frac{\vert AR_k(I) - \text{OPT}(I) \vert}{\text{OPT}(I)}$ \\~\\
+		\pause
 		\item
 		$AR_k(I) = [...] = \text{OPT}(I) - k \cdot \vert R^* \vert \ge \text{OPT}(I) - k \cdot n$
+		\\~\\
 	\end{itemize}	
 	
 	$\Rightarrow \vert AR_k(I) - \text{OPT}(I) \vert \le k \cdot n$\\~\\
+	\pause
 	\begin{itemize}
 		\item
 		$\displaystyle \varepsilon_{AR_k}(I) = \frac{\vert AR_k(I) - \text{OPT}(I) \vert}{\text{OPT}(I)} \le \frac{k \cdot  n}{\text{OPT(I)}} \le \frac{k \cdot n}{P_{\max}}$
@@ -74,7 +77,7 @@ $A$ ist ein \textbf{\textit{streng polynomielles Approximationsschema} (FPAS; en
 \begin{frame}{Entwicklung eines FPAS - FPAS Wiederhohlung}
 	Vorraussetzungen für einen FPAS:
 	\begin{enumerate}
-		\item für $\varepsilon \in ]0, 1[$ 
+		\item für alle $\varepsilon \in ]0, 1[$ 
 		\item mit $\varepsilon_A(I,\varepsilon) \le \varepsilon$
 		\item in $\displaystyle \mathcal O(poly(\vert I \vert, \frac{1}{\varepsilon}))$
 	\end{enumerate}
@@ -118,5 +121,5 @@ $\Rightarrow \varepsilon$ kann frei $\in]0,1[$ gewählt werden und da $\varepsil
 		\item[]
 		$\displaystyle \mathcal O(n^3 \cdot \frac{1}{\varepsilon})$
 	\end{itemize}
-$\Rightarrow$ Laufzeit des Algorithmus ist somit gemäß der Bedingung für FPAS $\displaystyle \mathcal O(poly(\vert I \vert, \frac{1}{\varepsilon}))$
+$\Rightarrow$ Laufzeit des Algorithmus ist somit gemäß der 3. Bedingung für FPAS $\displaystyle \mathcal O(poly(\vert I \vert, \frac{1}{\varepsilon}))$
 \end{frame}
