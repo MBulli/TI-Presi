@@ -2,9 +2,42 @@
 \section{Unmöglichkeitsergebnisse}
 
 \begin{frame}{Unmöglichkeitsergebnisse}
-	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.
-	Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.
-	Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.
-	Aenean nec lorem. In porttitor. Donec laoreet nonummy augue.
-	Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.      
+	 Wann stoßen Apprimationsschemata an ihre Grenzen?   
+\end{frame}
+
+\begin{frame}{Unmöglichkeitsergebnisse}
+	Definition nach Wanka (S. 73, Definition 4.9) \newline
+	
+	Ein NP-vollständiges Entscheidungsproblem $L$ heißt stark NP-vollständig,  wenn es ein Polynom $q$ gibt, so dass $L_q = \{x\vert x \in L \text{ und } \maxnr(x) \leq q(\vert x \vert)\}$ NP-vollständig  ist. Gibt es kein solches Polynom, heißt $L$ schwach  NP-vollständig.
+\end{frame}
+
+\begin{frame}{Unmöglichkeitsergebnisse}
+	Bedeutung
+	\begin{itemize}
+		\item Ist ein Entscheidungsproblem $L$ NP-vollständig und $\maxnr(x)$ polynomiell in der Länge der Eingabe $\vert x \vert$ beschränkt, so ist es stark NP-vollständig.
+		\item D.h. trotz der Einschränkung, dass $\maxnr(x)$ nicht exponentiell werden darf, ist das Problem NP-vollständig und nicht in polynomieller Zeit lösbar.
+		\item Gibt es kein solches Polynom, so ist das Problem $L$ schwach NP-vollständig.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Unmöglichkeitsergebnisse}
+	Anders ausgedrückt
+	\begin{itemize}
+		\item Gibt es für ein NP-vollständiges Entscheidungsproblem $L$ keinen pseudopolynomiellen exakten Algorithmus, so ist das Problem stark NP-vollständig
+		\item Voraussetzung: P $\neq$ NP\newline
+	\end{itemize}
+	\pause
+
+	Enge Beziehung zwischen starker NP-Vollständigkeit und FPAS
+	\begin{itemize}
+		\item Gibt es ein Polynom $q(x_1,x_2)$, so dass für alle Probleminstanzen $I$ gilt, dass $\OPT(I) \le q(\vert I \vert, \maxnr(I))$ ist, dann folgt aus der Existenz eines FPAS für das Problem, dass es dafür auch einen pseudopolynomiellen exakten Algorithmus gibt.
+		\item Gibt es für eine Optimierungsvariante eines stark NP-vollständigen Problems ein FPAS, dann ist P $=$ NP.
+	\end{itemize}
+\end{frame}
+\begin{frame}
+	Schlussfolgerung
+	\begin{itemize}
+		\item Ist N $\neq$ NP, so kann es für viele Optimierungsprobleme (\textsc{Clique}, Graphenfärbungsprobleme, TSP) keine streng polynomiellen Approximationsschemata geben. 
+	\end{itemize}
+	
 \end{frame}
