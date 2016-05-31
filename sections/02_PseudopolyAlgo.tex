@@ -136,8 +136,9 @@ Bereits bekannt: Komplexität $\Rightarrow \mathcal{O}( n \cdot \OPT(I)) = \math
 
 \end{frame}
 
-\begin{frame}{Pseudopolynomielle Algorithmen}
-Definition:
+\begin{frame}{Pseudopolynomielle Algorithmen - Definition}
+
+Definition nach Wanka (S.70, Definition 4.5): \newline
 
 Sei $\Pi$ ein kombinatorisches Optimierungsproblem, so dass für alle Instanzen $I$ gilt, dass alle in $I$ vorkommenden Zahlen natürliche Zahlen sind. Sei maxnr($I$) die größte in $I$ vorkommende Zahl. Ein Algorithmus für $\Pi$ heißt pseudopolynomiell, falls es ein Polynom poly(.,.)  gibt, so 
 dass für alle Instanzen $I$ seine Laufzeit poly(|$I$| ,maxnr($I$)) ist. 
@@ -148,7 +149,7 @@ Bedeutung:
 
 \begin{itemize}
 	\item Die Laufzeit ist polynomiell in der Eingabelänge und der größten vorkommenden Zahl beschränkt
-	\item Das Problem ist (unter der Annahme P $\neq$ PN) nur für Eingaben mit großen Zahlen schwer lösbar, sonst effizient
+	\item Das Problem ist (unter der Annahme P $\neq$ NP) nur für Eingaben mit großen Zahlen schwer lösbar, sonst effizient
 \end{itemize}
 
 Verwendung:
