@@ -17,29 +17,6 @@ Was bedeutet pseudopolynomiell?
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Pseudopolynomielle Algorithmen - Primzahltest}
-\begin{itemize}
-	\item Testet, ob eine gegebene Zahl eine Primzahl ist
-	\item Naives Verfahren: Teile die Eingabe $n$ durch alle ganzen Zahlen $\{2,3,...,n\}$
-\end{itemize}
-
-\begin{algorithm}[H]
-\caption{Naiver Primzahltest}
-    \begin{algorithmic}
-        \Require{Natürliche Zahl $n$}
-        \Ensure{$true$ falls $n$ eine Primzahl ist, sonst $false$}
-        \Function{IsPrim}{$n$}
-            \For{$p=2$ \textbf{to} $n$}
-            \If{$n \Mod{p} = 0$} 
-                \State return $false$
-            \EndIf
-            \EndFor
-          	\State return $true$
-        \EndFunction
-    \end{algorithmic}
-\end{algorithm}
-\end{frame}
-
 \begin{frame}{Pseudopolynomielle Algorithmen - Gegenbeispiel}
     \begin{itemize}
         \item \textbf{Fakt:} \textsc{Bubblesort} hat eine Laufzeit von $\mathcal{O}(n^2)$
@@ -57,18 +34,18 @@ Was bedeutet pseudopolynomiell?
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Pseudopolynomielle Algorithmen - BubblesortPseudo}
+\begin{frame}{Pseudopolynomielle Algorithmen}
     Wie sähe ein \textsc{Bubblesort} aus der pseudopolynomiell ist?
     
 \end{frame}
 
-\begin{frame}{Pseudopolynomielle Algorithmen - BubblesortPseudo}
+\begin{frame}{Pseudopolynomielle Algorithmen - \textsc{BubblesortPseudo}}
 	
 	\textsc{BubblesortPseudo} wird ein Integer $a$ übergeben. Intern wird ein Array mit der Länge $a$ erzeugt. Anschließend wird das Array zum Sortieren an \textsc{Bubblesort} übergeben.
 	
 	\begin{itemize}
 		
-		\item \textbf{Fakt:} \textsc{BubblesortPseudo} hat auch eine Laufzeit von $\mathcal{O}(n^2)$
+		\item \textbf{Fakt:} \textsc{BubblesortPseudo} hat auch eine Laufzeit von $\mathcal{O}(a^2)$
 		\item \textbf{Behauptung:} \textsc{BubblesortPseudo} ist pseudopolynomiell
 		\pause
 		\item \textbf{Beweis:} 
@@ -85,26 +62,41 @@ Was bedeutet pseudopolynomiell?
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Pseudopolynomielle Algorithmen}
-Problem:
-
-\begin{itemize}
-	\item Benötigt naiv $n-2$ Divisionen.
-	\item Aber: Komplexität wird in der Eingabelänge |$n$| berechnet, hier die Anzahl an benötigten Bits
-	\item Die Komplexität des Algorithmus hängt also logarithmisch von n ab, daher hat der Algorithmus eine exponentielle Laufzeit $\mathcal{O}(2^{|n|}) = \mathcal{O}(2^{\log_2{(n)}})$
-	\item Daher ist der naive Primzahltest Algorithmus pseudopolynomiell
-\end{itemize}
+\begin{frame}{Pseudopolynomielle Algorithmen - \textsc{Primzahltest}}
+	\begin{itemize}
+		\item Testet, ob eine gegebene Zahl eine Primzahl ist
+		\item Naives Verfahren: Teile die Eingabe $n$ durch alle ganzen Zahlen $\{2,3,...,n\}$
+	\end{itemize}
+	
+	\begin{algorithm}[H]
+		\caption{Naiver \textsc{Primzahltest}}
+		\begin{algorithmic}
+			\Require{Natürliche Zahl $n$}
+			\Ensure{$true$ falls $n$ eine Primzahl ist, sonst $false$}
+			\Function{IsPrim}{$n$}
+			\For{$p=2$ \textbf{to} $n$}
+			\If{$n \Mod{p} = 0$} 
+			\State return $false$
+			\EndIf
+			\EndFor
+			\State return $true$
+			\EndFunction
+		\end{algorithmic}
+	\end{algorithm}
 \end{frame}
 
-\begin{frame}
-    \begin{itemize}
-    	\item \textbf{Beispiel Sortieralgorithmus}
-        \begin{itemize}
-            \item Eingabe: Liste mit Elemente die sortiert werden sollen
-            \item Problemgröße: Anzahl der Elemente in der Liste $\widehat{=}$ Länge der Eingabe
-            \item	Sortieralgorithmen sind also \textbf{nicht} pseudopolynomiell, da die Eingabe bereits die Anzahl der elemente ist, die eigentliche darstellung der Elemente ist irrelevant
-        \end{itemize}
-    \end{itemize}
+\begin{frame}{Pseudopolynomielle Algorithmen}
+	Problem:
+	
+	\begin{itemize}
+		\item Benötigt naiv $n-2$ Divisionen, somit ist die Laufzeit $\landau{n}$ 
+		\item Aber: Komplexität wird in der Eingabelänge $|n|$ berechnet, hier die Anzahl an benötigten Bits $x = \log_2(n)$ 
+		\item Für die Komplexität ergibt sich
+		\begin{itemize}
+			\item $\displaystyle \landau{n^2} = \landau{(2^x)^2}$
+		\end{itemize}
+		\item $\Rightarrow$ \textsc{Primzahltest} Algorithmus ist pseudopolynomiell
+	\end{itemize}
 \end{frame}
 
 \begin{frame}{Pseudopolynomielle Algorithmen}
