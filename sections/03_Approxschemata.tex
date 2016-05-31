@@ -27,56 +27,60 @@ $A$ ist ein \textbf{\textit{streng polynomielles Approximationsschema} (FPAS; en
 \end{enumerate}		      
 \end{frame}
 
-\section{Entwicklung eines FPAS}
-\begin{frame}{Algorithmus $\text{AR}_k$ Überlegung}	
+\begin{frame}{Entwicklung eines FPAS - Algorithmus $\text{AR}_k$ Überlegung}	
 	\begin{itemize}
 		\item 
 		Laufzeit des \textsc{DynRucksack} Algorithmus: $\mathcal O(n^2 \cdot P_{\max})$ 
 		\item
 		Laufzeit ist abhängig von $P_{\max}$
-		\item
-		$\Rightarrow$ Verringere $P_{\max}$ um die Laufzeit zu verbessern
 	\end{itemize}
+	$\Rightarrow$ Verringere $P_{\max}$ um die Laufzeit zu verbessern
 \end{frame}
-\begin{frame}{Algorithmus $\text{AR}_k$ Vorgehen}	
+
+\begin{frame}{Entwicklung eines FPAS - Algorithmus $\text{AR}_k$ Vorgehen}	
 	\begin{itemize}
 		\item 
-		Man reduziere alle Preise der Waren in $I$ um $k$ d.h. ersetze $p_j$ durch $\displaystyle \lfloor \frac {p_j}{k} \rfloor $
+		Man reduziere alle Preise der Waren in $I$ um $k$ d.h. ersetze $p_j$ durch $\displaystyle \lfloor \frac {p_j}{k} \rfloor $.
 		\item
-		Löse die neue Eingabemenge $I_{red}$ mittels \textsc{DynRucksack} und erhalte Lösungsmenge $R_k$
+		Löse die neue Eingabemenge $I_{red}$ mittels \textsc{DynRucksack} und erhalte Lösungsmenge $R_k$.
 		\item
-		Die Lösungsmenge $R_k$ ist eine zulässige Lösung für $I$
+		Die Lösungsmenge $R_k$ ist eine zulässige Lösung für $I$, da die Änderung der Preise keine Auswirkung auf die Rucksackfüllung hat.
 		
 	\end{itemize}
 	$\Rightarrow$ Laufzeit: $\displaystyle \mathcal O(n^2 \cdot \frac{P_{\max}}{k})$
 \end{frame}
 
-\begin{frame}{Algorithmus $\text{AR}_k$ Nachteil}	
+\begin{frame}{Entwicklung eines FPAS - Algorithmus $\text{AR}_k$ Nachteil}
+	Durch die Ersetzung der Preise $p_j$ um $\displaystyle \lfloor \frac {p_j}{k} \rfloor $ ensteht ein (relativer) Fehler.
 	\begin{itemize}
-		\item 
-		Durch die Ersetzung der Preise $p_j$ um $\displaystyle \lfloor \frac {p_j}{k} \rfloor $ ensteht ein (relativer) Fehler.
+		
+		\item
+		$\displaystyle \varepsilon_{AR_k}(I) = \frac {\text{absolute Güte}} {\text{relative Güte}} = \frac{\vert AR_k(I) - \text{OPT}(I) \vert}{\text{OPT}(I)}$ 
 		\item
 		$AR_k(I) = [...] = \text{OPT}(I) - k \cdot \vert R^* \vert \ge \text{OPT}(I) - k \cdot n$
-	\end{itemize}
-	$\Rightarrow \vert AR_k(I) - \text{OPT}(I) \vert \le k \cdot n$
-	\\~\\
+	\end{itemize}	
+	
+	$\Rightarrow \vert AR_k(I) - \text{OPT}(I) \vert \le k \cdot n$\\~\\
 	\begin{itemize}
 		\item
-		$\displaystyle \varepsilon_{AR_k}(I) = \frac {\text{absolute Güte}} {\text{relative Güte}} = \frac{\vert AR_k(I) - \text{OPT}(I) \vert}{\text{OPT}(I)} \le \frac{k \cdot  n}{\text{OPT(I)}} \le \frac{k \cdot n}{P_{\max}}$
+		$\displaystyle \varepsilon_{AR_k}(I) = \frac{\vert AR_k(I) - \text{OPT}(I) \vert}{\text{OPT}(I)} \le \frac{k \cdot  n}{\text{OPT(I)}} \le \frac{k \cdot n}{P_{\max}}$
 	\end{itemize}
-	$\Rightarrow$ Relativer Fehler: $\displaystyle \varepsilon_{AR_k}(I) \le \frac{k \cdot n}{P_{\max}}$
+	
+	$\Rightarrow$ Relativer Fehler: $\displaystyle \varepsilon_{AR_k}(I) \le \frac{k \cdot n}{P_{\max}}$\\~\\
+	
+	Da das Rucksackproblem ein Maximierungsproblem ist kann der relative Fehler nicht größer als 1 sein.
 \end{frame}
 
-\begin{frame}{FPAS Wiederhohlung}
+\begin{frame}{Entwicklung eines FPAS - FPAS Wiederhohlung}
 	Vorraussetzungen für einen FPAS:
-	\begin{itemize}
+	\begin{enumerate}
 		\item für $\varepsilon \in ]0, 1[$ 
 		\item mit $\varepsilon_A(I,\varepsilon) \le \varepsilon$
 		\item in $\displaystyle \mathcal O(poly(\vert I \vert, \frac{1}{\varepsilon}))$
-	\end{itemize}
+	\end{enumerate}
 \end{frame}
 
-\begin{frame}{Algorithmus \textsc{FPASRucksack} Überlegung}
+\begin{frame}{Entwicklung eines FPAS - Algorithmus \textsc{FPASRucksack} Überlegung}
 	\begin{itemize}
 		\item
 		Suchen eines Algorithmus dessen Laufzeit abhängig vom übergebenen relativen Fehler ist.
@@ -85,7 +89,7 @@ $A$ ist ein \textbf{\textit{streng polynomielles Approximationsschema} (FPAS; en
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Algorithmus \textsc{FPASRucksack} Bestimmung von $k$}
+\begin{frame}{Entwicklung eines FPAS - Algorithmus \textsc{FPASRucksack} Bestimmung von $k$}
 	Bestimme Übergabeparameter $k$ des $AR_k$ anhand des übergebenen Fehlers $\varepsilon$.
 	\begin{itemize}
 		\item
@@ -99,10 +103,10 @@ $A$ ist ein \textbf{\textit{streng polynomielles Approximationsschema} (FPAS; en
 		$\displaystyle k := \varepsilon \cdot \frac{P_{\max}}{n}$
 	\end{itemize}
 
-$\Rightarrow \varepsilon$ kann frei $\in]0,1[$ gewählt werden. $\varepsilon_{AR_k}(I) \le \varepsilon_{FPAS}(I,e)$
+$\Rightarrow \varepsilon$ kann frei $\in]0,1[$ gewählt werden und da $\varepsilon_{AR_k}(I) \le \varepsilon_{FPAS}(I,e)$  ist die 2. Bedingung erfüllt.
 
 \end{frame}
-\begin{frame}{Algorithmus \textsc{FPASRucksack} Laufzeit}
+\begin{frame}{Entwicklung eines FPAS - Algorithmus \textsc{FPASRucksack} Laufzeit}
 	\begin{itemize}
 		\item
 		Laufzeit des $AR_k$: $\displaystyle \mathcal O(n^2 \cdot \frac{P_{\max}}{k})$
@@ -114,5 +118,5 @@ $\Rightarrow \varepsilon$ kann frei $\in]0,1[$ gewählt werden. $\varepsilon_{AR
 		\item[]
 		$\displaystyle \mathcal O(n^3 \cdot \frac{1}{\varepsilon})$
 	\end{itemize}
-$\Rightarrow$ Laufzeit des Algorithmus ist gemäß der Bedingung für FPAS $\displaystyle \mathcal O(poly(\vert I \vert, \frac{1}{\varepsilon}))$
+$\Rightarrow$ Laufzeit des Algorithmus ist somit gemäß der Bedingung für FPAS $\displaystyle \mathcal O(poly(\vert I \vert, \frac{1}{\varepsilon}))$
 \end{frame}
