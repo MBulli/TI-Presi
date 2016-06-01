@@ -43,7 +43,7 @@
     \begin{itemize}
         \item Ein Dieb raubt einen Laden aus, jedoch hat er für die Beute nur einen Rucksack dabei
         \item Im Laden findet er $n$ Gegenstände
-        \item Der $i$-te Gegenstand hat den Wert $p_i$ und das Gewicht $w_i$
+        \item Der $i$-te Gegenstand hat den Preis $p_i$ und das Gewicht $w_i$
         \item Sein Rucksack kann höchstens das Gewicht $B$ tragen
         \item $p_i, w_i$ und $B$ sind natürliche Zahlen
     \end{itemize}
@@ -85,7 +85,7 @@
 \begin{itemize}
 	\item Maximaler Profit ohne Überschreitung des Rucksackvolumen.
     \item Idee: Profit diskret erhöhen und prüfen ob mehr gehen würde.
-    Hierzu benötigen wir eine Funktion die für einen bestimmten Wert $\alpha$ das minimal benötige Volumen zurück gibt.
+    Hierzu benötigen wir eine Funktion die für einen bestimmten Profit $\alpha$ das minimal benötige Volumen zurück gibt.
     So können wir prüfen ob unser Rucksackvolumen $B$ bei einem bestimmten Profit $\alpha$ überschritten ist.
     
     \item Dynamische Lösung: Schritt für Schritt an die optimale Lösung heran arbeiten.
