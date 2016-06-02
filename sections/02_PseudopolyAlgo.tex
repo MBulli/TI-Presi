@@ -8,13 +8,21 @@ Was bedeutet pseudopolynomiell?
    	\item Eigenschaft eines Algorithmus
 	\item Die Komplexität wird durch ein Polynom nach oben begrenzt, dass von zwei Variablen abhängt
     \begin{itemize}
-        \item Die Länge der Eingabe $\abs{I}$ und
-        \item die Länge der größten vorkommenden Zahl $\maxnr(I)$
+        \item Die Länge der Eingabe $\abs{I}$
+        \item Die größte in $I$ vorkommenden Zahl $\maxnr(I)$
     \end{itemize}
     \item Die Besonderheit ist hier, dass die Kodierung der Zahlen eine Rolle spielt
     \item Nur nummerische Algorithmen können pseudopolynomiell sein
-    \item Jeder polynomieller Algorithmus ist auch pseudopolynomiell, aber nicht umgekehrt
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Pseudopolynomielle Algorithmen - Definition}
+	
+	Definition nach Wanka (S.70, Definition 4.5): \newline
+	
+	Sei $\Pi$ ein kombinatorisches Optimierungsproblem, so dass für alle Instanzen $I$ gilt, dass alle in $I$ vorkommenden Zahlen natürliche Zahlen sind. Sei maxnr($I$) die größte in $I$ vorkommende Zahl. Ein Algorithmus für $\Pi$ heißt pseudopolynomiell, falls es ein Polynom poly(.,.)  gibt, so 
+	dass für alle Instanzen $I$ seine Laufzeit poly(|$I$| ,maxnr($I$)) ist. 
+	
 \end{frame}
 
 \begin{frame}{Pseudopolynomielle Algorithmen - Gegenbeispiel}
@@ -27,63 +35,15 @@ Was bedeutet pseudopolynomiell?
             \item Die Eingabelänge in Bits entspricht somit $x=32n$
             \item Für die Komplexität ergibt sich
             \begin{itemize}
-                \item $\mathcal{O}(x^2)=\mathcal{O}((32n)^2)=\mathcal{O}(1024n^2)=\mathcal{O}(n^2)$      
+                \item $\displaystyle \landau{n^2} = \landau{(\frac{x}{32})^2} = \landau{(\frac{1}{32})^2 \cdot x^2} = \landau{x^2}$      
             \end{itemize}
             \item[] $\Rightarrow$ \textsc{Bubblesort} ist echt-polynomiell da die Laufzeit nur von der Anzahl der Elemente abhängt
         \end{itemize}
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Pseudopolynomielle Algorithmen - Vergleich}
-    \begin{minipage}[t]{0.5\textwidth}
-    	\begin{itemize}
-            \item \textbf{Eingabe}: \\ Array mit $n$ Elementen
-            \item \textbf{Länge der Eingabe}: \\ $\abs{I} = x = n\cdot 32$
-            \item \textbf{Größte Zahl in Eingabe}: $\maxnr(I)=2^{32}$
-            \item \textbf{Gesucht}: \\ $\Poly(\vert I \vert, \maxnr(I))$
-            \item[$\Rightarrow$] $\Poly(x,y)=x^2\cdot y$
-            \item[$\Rightarrow$] $\landau{\Poly(x,2^{32})} = \landau{x^2 \cdot 2^{32}} = \landau{x^2}$
-        \end{itemize}
-    \end{minipage}
-    \pause
-    \hspace{2mm}
-    \begin{minipage}[t]{0.47\textwidth}
-        \begin{itemize}
-            \item \textbf{Eingabe}: \\ Zahl $a$
-            \item \textbf{Länge der Eingabe}: \\ $\abs{I} = x = \lceil \log_2(a)\rceil$
-            \item \textbf{Größte Zahl in Eingabe}: $\maxnr(I)=2^x$
-            \item \textbf{Gesucht}: \\ $\Poly(\vert I \vert, \maxnr(I))$
-            \item[$\Rightarrow$] $\Poly(x,y)=x^2\cdot y$
-            \item[$\Rightarrow$] $\landau{\Poly(x,2^x)} = \landau{x^2 \cdot 2^x}$
-        \end{itemize}
-    \end{minipage}
- \end{frame}
-
-\begin{frame}{Pseudopolynomielle Algorithmen - \textsc{Bubblesort}}
-	\begin{itemize}
-		\item \textbf{Eingabe}: Array mit $n$ Elementen
-		\item \textbf{Länge der Eingabe}: $x = n\cdot 32 = \vert I \vert$
-		\item \textbf{Größte Zahl in Eingabe}: $\maxnr(I)=2^{32}$
-		\item \textbf{Gesucht}: $Poly(\vert I \vert, \maxnr{I})$
-		\item $\Rightarrow Poly(x,y)=x^2\cdot y$
-		\item $\Rightarrow \mathcal{O}(Poly(x,2^{32})) = \mathcal{O}(x^2 \cdot 2^{32}) = \mathcal{O}(x^2)$
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Pseudopolynomielle Algorithmen - BubblesortPseudo}
-\begin{itemize}
-\item \textbf{Eingabe}: Zahl a
-\item \textbf{Länge der Eingabe}: $x = \lceil \log_2(a)\rceil = \vert I \vert$
-\item \textbf{Größte Zahl in Eingabe ($\maxnr$)}: $2^x$
-\item \textbf{Gesucht}: $Poly(\vert I \vert, \maxnr{I})$
-\item $\Rightarrow Poly(x,y)=x^2\cdot y$
-\item $\Rightarrow \mathcal{O}(Poly(x,2^x)) = \mathcal{O}(x^2 \cdot 2^x)$
-\end{itemize}
-\end{frame}
-
 \begin{frame}{Pseudopolynomielle Algorithmen}
     Wie sähe ein \textsc{Bubblesort} aus der pseudopolynomiell ist?
-    
 \end{frame}
 
 \begin{frame}{Pseudopolynomielle Algorithmen - \textsc{BubblesortPseudo}}
@@ -95,18 +55,47 @@ Was bedeutet pseudopolynomiell?
 		\item \textbf{Fakt:} \textsc{BubblesortPseudo} hat auch eine Laufzeit von $\mathcal{O}(a^2)$
 		\item \textbf{Behauptung:} \textsc{BubblesortPseudo} ist pseudopolynomiell
 		\pause
-		\item \textbf{Beweis:} 
+		\item \textbf{Folge:} 
 		\begin{itemize}
 			\item Gegeben ist ein Integer $a$ 
-			\item Die Eingabelänge in Bits entspricht somit $x = \lceil \log_2(a) \rceil$
+			\item Die Eingabelänge in Bits entspricht somit $x = \Bitlength(a)$
 			\item Die größte durch $x$ Bits darstellbare Zahl (Obere Grenze) ist $2^x$
 			\item Für die Komplexität ergibt sich
 			\begin{itemize}
 				\item $\displaystyle \landau{a^2} = \landau{(2^x)^2}$
 			\end{itemize}
-			\item[] $\Rightarrow$ \textsc{BubblesortPseudo} hat eine Laufzeit die polynomiell von der übergebenen Zahl $a$ abhängt, jedoch pseudopolynomiell zum Verhältnis der Eingabelänge $x$ ist
+			\item[] $\Rightarrow$ Die laufzeit von \textsc{BubblesortPseudo} wird exponentiell durch die länge der Eingabe beeinflusst. 
 		\end{itemize}
 	\end{itemize}
+\end{frame}
+
+\begin{frame}{Pseudopolynomielle Algorithmen - Vergleich}
+	\begin{minipage}[t]{0.5\textwidth}
+		\textsc{Bubblesort}
+		\begin{itemize}
+			\item \textbf{Eingabe}: \\ Array mit $n$ Elementen
+			\item \textbf{Länge der Eingabe}: \\ $\abs{I} = x = n\cdot 32$
+			\item \textbf{Größte Zahl in Eingabe}: $\maxnr(I)=2^{32}$
+			\item \textbf{Gesucht}: \\ $\Poly(\vert I \vert, \maxnr(I))$
+			\pause
+			\item[$\Rightarrow$] $\Poly(x,y)=x^2\cdot y$
+			\item[$\Rightarrow$] $\landau{\Poly(x,2^{32})} = \landau{x^2 \cdot 2^{32}} = \landau{x^2}$
+		\end{itemize}
+	\end{minipage}
+	\pause
+	\hspace{2mm}
+	\begin{minipage}[t]{0.47\textwidth}
+		\textsc{BubblesortPseudo}
+		\begin{itemize}
+			\item \textbf{Eingabe}: \\ Zahl $a$
+			\item \textbf{Länge der Eingabe}: \\ $\abs{I} = x = \Bitlength(a)$
+			\item \textbf{Größte Zahl in Eingabe}: $\maxnr(I)=2^x$
+			\item \textbf{Gesucht}: \\ $\Poly(\vert I \vert, \maxnr(I))$
+			\pause
+			\item[$\Rightarrow$] $\Poly(x,y)=x^2\cdot y$
+			\item[$\Rightarrow$] $\landau{\Poly(x,2^x)} = \landau{x^2 \cdot 2^x}$
+		\end{itemize}
+	\end{minipage}
 \end{frame}
 
 \begin{frame}{Pseudopolynomielle Algorithmen - \textsc{Primzahltest}}
@@ -137,21 +126,21 @@ Was bedeutet pseudopolynomiell?
 	
 	\begin{itemize}
 		\item Benötigt naiv $n-2$ Divisionen, somit ist die Laufzeit $\landau{n}$ 
-		\item Aber: Komplexität wird in der Eingabelänge $|n|$ berechnet, hier die Anzahl an benötigten Bits $x = \log_2(n)$ 
+		\item Aber: Komplexität wird in der Eingabelänge $|n|$ berechnet, hier die Anzahl an benötigten Bits $x = \Bitlength(n)$ 
 		\item Für die Komplexität ergibt sich
 		\begin{itemize}
-			\item $\displaystyle \landau{n^2} = \landau{(2^x)^2}$
+			\item $\displaystyle \landau{n} = \landau{2^x}$
 		\end{itemize}
 		\item $\Rightarrow$ \textsc{Primzahltest} Algorithmus ist pseudopolynomiell
 	\end{itemize}
 \end{frame}
 
 \begin{frame}{Pseudopolynomielle Algorithmen}
-Anwendung auf \textsc{Rucksack}
+Anwendung auf \textsc{DynRucksack}
 \newline
 
 \begin{algorithm}[H]
-    \caption{Exakter \rucksack/ Algorithmus}
+    \caption{Exakter \textsc{DynRucksack} Algorithmus}
         \begin{algorithmic}
             \State $\alpha:=0;$
             \Repeat
@@ -183,14 +172,6 @@ Bereits bekannt: Komplexität $\Rightarrow \mathcal{O}( n \cdot \OPT(I)) = \math
 
 \end{frame}
 
-\begin{frame}{Pseudopolynomielle Algorithmen - Definition}
-
-Definition nach Wanka (S.70, Definition 4.5): \newline
-
-Sei $\Pi$ ein kombinatorisches Optimierungsproblem, so dass für alle Instanzen $I$ gilt, dass alle in $I$ vorkommenden Zahlen natürliche Zahlen sind. Sei maxnr($I$) die größte in $I$ vorkommende Zahl. Ein Algorithmus für $\Pi$ heißt pseudopolynomiell, falls es ein Polynom poly(.,.)  gibt, so 
-dass für alle Instanzen $I$ seine Laufzeit poly(|$I$| ,maxnr($I$)) ist. 
-
-\end{frame}
 \begin{frame}{Pseudopolynomielle Algorithmen}
 Bedeutung:
 
