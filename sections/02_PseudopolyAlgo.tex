@@ -34,11 +34,36 @@ Was bedeutet pseudopolynomiell?
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Pseudopolynomielle Algorithmen - Vergleich}
+    \begin{minipage}[t]{0.5\textwidth}
+    	\begin{itemize}
+            \item \textbf{Eingabe}: \\ Array mit $n$ Elementen
+            \item \textbf{Länge der Eingabe}: \\ $\abs{I} = x = n\cdot 32$
+            \item \textbf{Größte Zahl in Eingabe}: $\maxnr(I)=2^{32}$
+            \item \textbf{Gesucht}: \\ $\Poly(\vert I \vert, \maxnr(I))$
+            \item[$\Rightarrow$] $\Poly(x,y)=x^2\cdot y$
+            \item[$\Rightarrow$] $\landau{\Poly(x,2^{32})} = \landau{x^2 \cdot 2^{32}} = \landau{x^2}$
+        \end{itemize}
+    \end{minipage}
+    \pause
+    \hspace{2mm}
+    \begin{minipage}[t]{0.47\textwidth}
+        \begin{itemize}
+            \item \textbf{Eingabe}: \\ Zahl $a$
+            \item \textbf{Länge der Eingabe}: \\ $\abs{I} = x = \lceil \log_2(a)\rceil$
+            \item \textbf{Größte Zahl in Eingabe}: $\maxnr(I)=2^x$
+            \item \textbf{Gesucht}: \\ $\Poly(\vert I \vert, \maxnr(I))$
+            \item[$\Rightarrow$] $\Poly(x,y)=x^2\cdot y$
+            \item[$\Rightarrow$] $\landau{\Poly(x,2^x)} = \landau{x^2 \cdot 2^x}$
+        \end{itemize}
+    \end{minipage}
+ \end{frame}
+
 \begin{frame}{Pseudopolynomielle Algorithmen - \textsc{Bubblesort}}
 	\begin{itemize}
-		\item \textbf{Eingabe}: Array mit n Elementen
+		\item \textbf{Eingabe}: Array mit $n$ Elementen
 		\item \textbf{Länge der Eingabe}: $x = n\cdot 32 = \vert I \vert$
-		\item \textbf{Größte Zahl in Eingabe ($\maxnr$)}: $2^{32}$
+		\item \textbf{Größte Zahl in Eingabe}: $\maxnr(I)=2^{32}$
 		\item \textbf{Gesucht}: $Poly(\vert I \vert, \maxnr{I})$
 		\item $\Rightarrow Poly(x,y)=x^2\cdot y$
 		\item $\Rightarrow \mathcal{O}(Poly(x,2^{32})) = \mathcal{O}(x^2 \cdot 2^{32}) = \mathcal{O}(x^2)$
