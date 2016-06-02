@@ -88,19 +88,69 @@
      \item mit $x_i=1$ wenn Gegenstand $i$ im Rucksack enthalten ist, sonst $x_i=0$
 \end{itemize}
 \end{frame}
-\begin{frame}{0-1 \textsc{Rucksack}-Problem}
+\begin{frame}{Algorithmus \textsc{DynRucksack}}
 \begin{itemize}
-	\item Maximaler Profit ohne Überschreitung des Rucksackvolumen.
-    \item Idee: Profit diskret erhöhen und prüfen ob mehr gehen würde.
-    Hierzu benötigen wir eine Funktion die für einen bestimmten Profit $\alpha$ das minimal benötige Volumen zurück gibt.
-    So können wir prüfen ob unser Rucksackvolumen $B$ bei einem bestimmten Profit $\alpha$ überschritten ist.
+	\item Ziel: Maximaler Profit ohne Überschreitung des Rucksackvolumen
+    \item Hierzu suchen wir für einen bestimmten Profit $\alpha$ ein minimales Volumen
+    \item[] \begin{itemize}
+        \item Idee dahinter ist Gegenstände zu wählen, die möglichst viel Platz nach \qq{oben} lassen
+       \end{itemize} 
+    \item Nun wird ausgehend von $\alpha=1$ der geforderte Profit diskret erhöht, bis ein minimales Volumen gefunden wird, welches gerade groß genug ist ohne den Rucksack zu überfüllen
+    \item[] \begin{itemize}
+        \item So wird am Ende eine optimale Lösung gefunden, da in jedem Teilschritt eine optimale Teillösung gefunden wurde
+       \end{itemize} 
+    \item Grundlage hierzu ist Rückwärtsinduktion
+    \item[] \begin{itemize}
+        \item Es wird rückwärts in Richtung der ersten Entscheidung derjenige Pfad gefunden, welcher den maximalen Nutzten bringt
+       \end{itemize}
     
-    \item Dynamische Lösung: Schritt für Schritt an die optimale Lösung heran arbeiten.
+    %\item Idee: Profit diskret erhöhen und prüfen ob mehr gehen würde.
+    %Hierzu benötigen wir eine Funktion die für einen bestimmten Profit $\alpha$ das minimal benötige Volumen zurück gibt.
+    %So können wir prüfen ob unser Rucksackvolumen $B$ bei einem bestimmten Profit $\alpha$ überschritten ist.
+    
+    %\item Dynamische Lösung: Schritt für Schritt an die optimale Lösung heran arbeiten.
 \end{itemize}
 \end{frame}
-\begin{frame}{0-1 \textsc{Rucksack}-Problem}
+
+\begin{frame}{Algorithmus \textsc{DynRucksack}}
+    \begin{forest}
+        for tree={
+                l sep=20pt,
+                align=center,
+                base=bottom,
+                parent anchor=south,
+                child anchor=north,
+                minimum width=1.5cm
+            }
+        [\tpair{\alpha=220}{F=0}, red							,edge label={node[midway,above,font=\scriptsize] {1}}
+            [\tpair{100}{30}, red						,edge label={node[midway,above,font=\scriptsize] {1}}
+                [\tpair{0}{50},red	 					,edge label={node[midway,above,font=\scriptsize] {1}}
+                    [\tpair{-60}{60}					,edge label={node[midway,above,font=\scriptsize] {1}}]
+                    [\tpair{0}{50}, red					,edge label={node[midway,above,font=\scriptsize] {0}}]
+                ] 
+                [\tpair{100}{30}						,edge label={node[midway,above,font=\scriptsize] {0}}
+                    [\tpair{40}{40}						,edge label={node[midway,above,font=\scriptsize] {1}}]
+                    [\tpair{100}{30}					,edge label={node[midway,above,font=\scriptsize] {0}}]
+                ] 
+            ]
+            [\tpair{220}{0}								,edge label={node[midway,above,font=\scriptsize] {0}}
+                [\tpair{120}{20}						,edge label={node[midway,above,font=\scriptsize] {1}}
+                    [\tpair{60}{30}						,edge label={node[midway,above,font=\scriptsize] {1}}]
+                    [\tpair{120}{20}					,edge label={node[midway,above,font=\scriptsize] {0}}]
+                ] 
+                [\tpair{220}{0}							,edge label={node[midway,above,font=\scriptsize] {0}}
+                    [\tpair{160}{10}					,edge label={node[midway,above,font=\scriptsize] {1}}]
+                    [\tpair{220}{0}						,edge label={node[midway,above,font=\scriptsize] {0}}]
+                ] 
+            ] 
+        ]
+    \end{forest}
+\end{frame}
+
+
+\begin{frame}{Algorithmus \textsc{DynRucksack}}
     Für $j \in \{0,1,...,n\}$ und $\alpha \in \mathbb{Z}$ sei $F_j(\alpha)$ das kleinste benötigte Rucksackvolumen, mit dem
-    man einen Wert von mindestens $\alpha$ erzielen kann, wenn man die ersten $j$ Waren einpacken darf. 
+    man einen Wert von mindestens $\alpha$ erzielen kann, wenn man die ersten $j$ Waren einpacken darf
     
     \begin{equation*}
         F_j(\alpha) = \min\{w(R) \mid R \subseteq \{1,...,j\}, p(R) \geq \alpha  \}
@@ -116,15 +166,6 @@
     \end{equation*}
 \end{frame}
 
-\begin{frame}
-    \begin{itemize}
-        \item $F_j(\alpha)$ beschreibt einen Entscheidungsbaum
-        \item Idee dahinter ist die Rückwärtsinduktion
-        \item Letzte Entscheidung 
-        \item 
-        \item 
-    \end{itemize}
-\end{frame}
 
 \begin{frame}{Algorithmus \textsc{DynRucksack}}
     Gesucht ist insgesamt also das größte $\alpha$, sodass $F_n(\alpha)$ noch in den Rucksack der Kapazität $B$
